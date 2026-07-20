@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Cakes | Sprinkle &amp; Bloom 🧁</title>
+  <meta name="description" content="Browse whimsical custom cakes baked by Sprinkle & Bloom." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="particle-field" id="particleField" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true">🧁</div>
+
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="index.html" class="logo">
+        <span class="logo-emoji">🧁</span>
+        <span class="logo-text">Sprinkle&nbsp;&amp;&nbsp;Bloom</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="cakes.html" class="active">Our Cakes</a></li>
+        <li><a href="how.html">How It Works</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="contact.html" class="btn btn-primary btn-small">Order Now</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== Our Cakes Gallery ===== -->
+    <section class="section cakes">
+      <div class="container">
+        <h2 class="section-title reveal">Our Sweet Creations</h2>
+        <p class="section-sub reveal">A peek at cakes we've baked with love. ✨</p>
+
+        <div class="cake-grid">
+          <figure class="cake-card reveal">
+            <div class="polaroid">
+              <div class="cake-photo photo-1" aria-label="Unicorn cake placeholder"></div>
+              <figcaption>🌈 Unicorn Dream</figcaption>
+            </div>
+          </figure>
+          <figure class="cake-card reveal">
+            <div class="polaroid">
+              <div class="cake-photo photo-2" aria-label="Floral cake placeholder"></div>
+              <figcaption>🌸 Garden Bloom</figcaption>
+            </div>
+          </figure>
+          <figure class="cake-card reveal">
+            <div class="polaroid">
+              <div class="cake-photo photo-3" aria-label="Space cake placeholder"></div>
+              <figcaption>🚀 Cosmic Cutie</figcaption>
+            </div>
+          </figure>
+          <figure class="cake-card reveal">
+            <div class="polaroid">
+              <div class="cake-photo photo-4" aria-label="Macaron cake placeholder"></div>
+              <figcaption>🍬 Pastel Tower</figcaption>
+            </div>
+          </figure>
+          <figure class="cake-card reveal">
+            <div class="polaroid">
+              <div class="cake-photo photo-5" aria-label="Heart cake placeholder"></div>
+              <figcaption>💗 Sweetheart</figcaption>
+            </div>
+          </figure>
+          <figure class="cake-card reveal">
+            <div class="polaroid">
+              <div class="cake-photo photo-6" aria-label="Star cake placeholder"></div>
+              <figcaption>⭐ Starry Slice</figcaption>
+            </div>
+          </figure>
+        </div>
+
+        <div class="center-btn reveal">
+          <a href="contact.html" class="btn btn-primary">Order a Cake Like These 🧁</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">📸</a>
+        <a href="#" aria-label="Pinterest">📌</a>
+        <a href="#" aria-label="Facebook">👍</a>
+        <a href="#" aria-label="TikTok">🎵</a>
+      </div>
+      <p class="footer-love">Baked with Love 💗 at Sprinkle &amp; Bloom</p>
+      <p class="footer-copy">© <span id="year"></span> Sprinkle &amp; Bloom Bakery. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

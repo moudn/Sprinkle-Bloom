@@ -1,0 +1,529 @@
+/* =====================================================================
+   Sprinkle & Bloom 🧁 — Whimsical Custom Cake Bakery
+   Single, well-commented stylesheet.
+   Palette & fonts are defined as CSS variables in :root below.
+   ===================================================================== */
+
+/* ---------- 1. Design tokens (CSS variables) ---------- */
+:root {
+  /* Pastel palette */
+  --pink:   #FFB6C1;
+  --mint:   #98FB98;
+  --white:  #FFFFFF;
+  --gold:   #FFD700;
+  --peach:  #FFDAB9;
+
+  /* Derived tints for backgrounds / borders */
+  --pink-soft:  #FFF0F4;
+  --mint-soft:  #EAFBEA;
+  --ink:        #6b5563;   /* soft brownish text for readability on pastels */
+  --ink-soft:   #8a7682;
+
+  /* Fonts */
+  --font-head: "Patrick Hand", cursive;
+  --font-body: "Quicksand", sans-serif;
+
+  /* Shape + shadow language */
+  --radius:    24px;
+  --radius-lg: 36px;
+  --shadow:    0 12px 30px rgba(255, 182, 193, 0.35);
+  --shadow-sm: 0 6px 16px rgba(255, 182, 193, 0.30);
+
+  /* Layout */
+  --maxw: 1140px;
+}
+
+/* ---------- 2. Reset & base ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 15% 10%, var(--pink-soft) 0%, transparent 45%),
+    radial-gradient(circle at 85% 20%, var(--mint-soft) 0%, transparent 45%),
+    var(--white);
+  line-height: 1.6;
+  overflow-x: hidden;
+  /* hide native cursor on desktop; custom cupcake cursor takes over (see JS) */
+}
+
+h1, h2, h3 { font-family: var(--font-head); font-weight: 400; line-height: 1.1; }
+
+a { color: inherit; text-decoration: none; }
+
+img, svg { display: block; max-width: 100%; }
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+/* ---------- 3. Buttons (micro-interactions) ---------- */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.85rem 1.8rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s, background .25s;
+  will-change: transform;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--pink), var(--peach));
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 16px 36px rgba(255, 182, 193, 0.55);
+  background: linear-gradient(135deg, var(--peach), var(--pink));
+}
+.btn-ghost {
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+}
+.btn-ghost:hover { transform: translateY(-3px) scale(1.05); background: var(--mint-soft); }
+.btn-small { padding: 0.55rem 1.2rem; font-size: .9rem; }
+.btn-block { width: 100%; }
+
+/* center a lone button under a section */
+.center-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.2rem;
+}
+
+/* make an entire polaroid card a clickable link */
+.polaroid-link { display: block; }
+
+/* CTA banner reuses .order-box styling */
+.cta-banner { text-align: center; }
+
+/* ---------- 4. Header / Navigation ---------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  /* transparent at top, JS adds .scrolled for solid bg */
+  background: transparent;
+  transition: background .35s, box-shadow .35s, padding .35s;
+  padding-block: 0.6rem;
+}
+.header.scrolled {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 6px 20px rgba(255, 182, 193, 0.25);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-head);
+  font-size: 1.5rem;
+  color: var(--ink);
+}
+.logo-emoji { font-size: 1.7rem; animation: bob 3s ease-in-out infinite; }
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  font-weight: 600;
+}
+.nav-links a:not(.btn) {
+  position: relative;
+  padding: 0.3rem 0;
+  transition: color .2s;
+}
+.nav-links a:not(.btn)::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 0; height: 3px;
+  border-radius: 3px;
+  background: var(--pink);
+  transition: width .25s;
+}
+.nav-links a:not(.btn):hover { color: var(--pink); }
+.nav-links a:not(.btn):hover::after { width: 100%; }
+/* current page indicator */
+.nav-links a.active { color: var(--pink); }
+.nav-links a.active::after { width: 100%; }
+
+/* hamburger (mobile) */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+.nav-toggle span {
+  width: 26px; height: 3px; border-radius: 3px;
+  background: var(--ink);
+  transition: transform .3s, opacity .3s;
+}
+
+/* ---------- 5. Hero ---------- */
+.hero {
+  position: relative;
+  padding-block: clamp(3rem, 8vw, 6rem);
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+}
+.hero-container {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2rem;
+  align-items: center;
+}
+.eyebrow {
+  display: inline-block;
+  background: var(--mint-soft);
+  color: #4a8a4a;
+  font-weight: 700;
+  font-size: .85rem;
+  padding: 0.35rem 1rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+.hero-text h1 {
+  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  color: var(--ink);
+}
+.hero-text .highlight {
+  color: var(--pink);
+  position: relative;
+}
+.hero-text .highlight::after {
+  content: "";
+  position: absolute; left: 0; bottom: 4px;
+  width: 100%; height: 12px;
+  background: var(--gold);
+  opacity: .35;
+  border-radius: 12px;
+  z-index: -1;
+}
+.hero-sub {
+  margin: 1.2rem 0 1.8rem;
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  max-width: 34ch;
+}
+.hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* Animated SVG baker scene */
+.hero-image { display: flex; justify-content: center; }
+.baker-scene { width: min(420px, 100%); height: auto; }
+
+.blob {
+  fill: var(--pink-soft);
+  animation: pulse 6s ease-in-out infinite;
+}
+.cake { animation: floaty 5s ease-in-out infinite; transform-origin: center; }
+.baker { animation: floaty 5s ease-in-out infinite reverse; transform-origin: center; }
+.sprinkles .sp { animation: spin 4s linear infinite; transform-origin: center; }
+.sp2 { animation-delay: .5s; } .sp3 { animation-delay: 1s; }
+.sp4 { animation-delay: 1.5s; } .sp5 { animation-delay: 2s; }
+.piping { animation: pipe 1.6s ease-in-out infinite; transform-origin: 168px 138px; }
+.frost-dot { animation: drop 1.6s ease-in-out infinite; }
+
+@keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes pulse  { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+@keyframes spin   { to { transform: rotate(360deg); } }
+@keyframes bob    { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes pipe   { 0%,100% { transform: rotate(0); } 50% { transform: rotate(-8deg) translateY(2px); } }
+@keyframes drop   { 0% { opacity: 0; transform: translateY(-4px); } 50% { opacity: 1; } 100% { opacity: 0; transform: translateY(8px); } }
+
+/* ---------- 6. Generic sections ---------- */
+.section { padding-block: clamp(3.5rem, 8vw, 6rem); position: relative; }
+.section-title {
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--ink);
+}
+.section-sub {
+  text-align: center;
+  color: var(--ink-soft);
+  margin-top: .6rem;
+  margin-bottom: 2.5rem;
+  font-size: 1.05rem;
+}
+
+/* ---------- 7. Cakes gallery (polaroid cards) ---------- */
+.cake-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.cake-card { display: flex; justify-content: center; }
+.polaroid {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 1rem 1rem 1.4rem;
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 320px;
+  transition: transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .4s;
+  /* slight random tilt for charm */
+  transform: rotate(-2deg);
+}
+.cake-card:nth-child(even) .polaroid { transform: rotate(2deg); }
+.polaroid:hover {
+  /* wobble + float on hover */
+  animation: wobble 0.6s ease;
+  transform: translateY(-12px) rotate(0deg) scale(1.04);
+  box-shadow: 0 22px 44px rgba(255, 182, 193, 0.5);
+}
+.cake-card:nth-child(even) .polaroid:hover { transform: translateY(-12px) rotate(0deg) scale(1.04); }
+
+.cake-photo {
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  background-size: cover;
+  background-position: center;
+}
+/* Placeholder "photos": playful pastel gradients (replace with real images later) */
+.photo-1 { background: linear-gradient(135deg, var(--pink), var(--peach)); }
+.photo-2 { background: linear-gradient(135deg, var(--mint), #c8f7c8); }
+.photo-3 { background: linear-gradient(135deg, #c9b6ff, var(--pink)); }
+.photo-4 { background: linear-gradient(135deg, var(--gold), var(--peach)); }
+.photo-5 { background: linear-gradient(135deg, #ff9ec4, var(--pink)); }
+.photo-6 { background: linear-gradient(135deg, #a7e9ff, var(--mint)); }
+.polaroid figcaption {
+  text-align: center;
+  font-family: var(--font-head);
+  font-size: 1.3rem;
+  margin-top: .8rem;
+  color: var(--ink);
+}
+
+@keyframes wobble {
+  0% { transform: rotate(0) translateY(-12px) scale(1.04); }
+  25% { transform: rotate(-3deg) translateY(-12px) scale(1.04); }
+  50% { transform: rotate(3deg) translateY(-12px) scale(1.04); }
+  75% { transform: rotate(-2deg) translateY(-12px) scale(1.04); }
+  100% { transform: rotate(0) translateY(-12px) scale(1.04); }
+}
+
+/* ---------- 8. How it works ---------- */
+.how { background: var(--pink-soft); border-radius: var(--radius-lg); margin-inline: clamp(0,3vw,1.5rem); }
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.step {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: transform .3s, box-shadow .3s;
+}
+.step:hover { transform: translateY(-8px); box-shadow: var(--shadow); }
+.step-icon {
+  font-size: 3rem;
+  margin-bottom: .6rem;
+  animation: bob 3s ease-in-out infinite;
+}
+.step h3 { font-size: 1.5rem; color: var(--pink); margin-bottom: .4rem; }
+.step p { color: var(--ink-soft); }
+
+/* ---------- 9. About ---------- */
+.about-container {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+.about-text p { margin-top: 1rem; color: var(--ink-soft); font-size: 1.05rem; }
+.blob-card {
+  background: linear-gradient(135deg, var(--mint), var(--pink));
+  border-radius: var(--radius-lg);
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  box-shadow: var(--shadow);
+  animation: floaty 6s ease-in-out infinite;
+}
+.big-emoji { font-size: 6rem; }
+
+/* ---------- 10. Order / contact form ---------- */
+.order { }
+.order-box {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: clamp(2rem, 5vw, 3.5rem);
+  box-shadow: var(--shadow);
+  max-width: 720px;
+  margin-inline: auto;
+}
+.order-form { display: grid; gap: 1.2rem; margin-top: 1.5rem; }
+.field { display: grid; gap: .4rem; }
+.field label { font-weight: 700; color: var(--ink); }
+.field input,
+.field textarea {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 0.85rem 1rem;
+  border: 2px solid var(--peach);
+  border-radius: 16px;
+  background: var(--pink-soft);
+  color: var(--ink);
+  transition: border-color .2s, box-shadow .2s;
+  resize: vertical;
+}
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--pink);
+  box-shadow: 0 0 0 4px rgba(255, 182, 193, 0.25);
+}
+.form-note {
+  text-align: center;
+  font-weight: 700;
+  color: #4a8a4a;
+  min-height: 1.2em;
+}
+
+.contact-mini { text-align: center; color: var(--ink-soft); }
+.contact-mini a { color: var(--pink); font-weight: 700; }
+
+/* ---------- 11. Footer ---------- */
+.footer {
+  background: var(--mint-soft);
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+  padding-block: 2.5rem;
+}
+.footer-inner { text-align: center; display: grid; gap: .8rem; }
+.footer-social { display: flex; justify-content: center; gap: 1.2rem; font-size: 1.6rem; }
+.footer-social a { transition: transform .25s; }
+.footer-social a:hover { transform: translateY(-4px) scale(1.2) rotate(-8deg); }
+.footer-love { font-family: var(--font-head); font-size: 1.3rem; color: var(--ink); }
+.footer-copy { font-size: .85rem; color: var(--ink-soft); }
+
+/* ---------- 12. Scroll-reveal animation ---------- */
+/* Elements with .reveal start hidden + shifted; JS adds .visible */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity .7s ease, transform .7s cubic-bezier(.34,1.56,.64,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+/* stagger children inside a grid for a cascading effect */
+.cake-grid .reveal:nth-child(2) { transition-delay: .08s; }
+.cake-grid .reveal:nth-child(3) { transition-delay: .16s; }
+.cake-grid .reveal:nth-child(4) { transition-delay: .08s; }
+.cake-grid .reveal:nth-child(5) { transition-delay: .16s; }
+.cake-grid .reveal:nth-child(6) { transition-delay: .24s; }
+.steps .reveal:nth-child(2) { transition-delay: .12s; }
+.steps .reveal:nth-child(3) { transition-delay: .24s; }
+
+/* ---------- 13. Floating background particles ---------- */
+.particle-field {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;   /* never blocks clicks */
+  z-index: 1;
+  overflow: hidden;
+}
+.particle-field .particle {
+  position: absolute;
+  bottom: -40px;
+  font-size: 1.1rem;
+  opacity: .5;
+  animation: rise linear infinite;
+  will-change: transform;
+}
+@keyframes rise {
+  0%   { transform: translateY(0) rotate(0); opacity: 0; }
+  12%  { opacity: .5; }
+  88%  { opacity: .5; }
+  100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+
+/* ---------- 14. Custom cursor ---------- */
+.cursor {
+  position: fixed;
+  top: 0; left: 0;
+  font-size: 1.6rem;
+  pointer-events: none;
+  z-index: 9999;
+  /* Position is driven every frame by JS (rAF lerp) — do NOT transition
+     transform here, or it double-smooths and lags/jitters (esp. over
+     the animated cake cards). Only the scale gets a gentle transition. */
+  transform: translate(-50%, -50%);
+  transition: scale .15s ease, opacity .2s ease;
+  display: none;            /* enabled by JS only on fine pointers */
+  will-change: transform;
+  opacity: 0;               /* fade in once the mouse moves */
+}
+.cursor.active { scale: 1.5; }
+
+/* ---------- 15. Responsive ---------- */
+@media (max-width: 900px) {
+  .hero-container { grid-template-columns: 1fr; text-align: center; }
+  .hero-sub { margin-inline: auto; }
+  .hero-cta { justify-content: center; }
+  .hero-image { order: -1; }
+  .cake-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps { grid-template-columns: 1fr; }
+  .about-container { grid-template-columns: 1fr; }
+  .about-art { order: -1; max-width: 280px; margin-inline: auto; }
+}
+
+@media (max-width: 620px) {
+  .nav-links {
+    position: absolute;
+    top: 100%; right: 0; left: 0;
+    flex-direction: column;
+    gap: 1rem;
+    background: rgba(255,255,255,.97);
+    padding: 1.5rem;
+    border-radius: 0 0 var(--radius) var(--radius);
+    box-shadow: var(--shadow);
+    transform: translateY(-130%);
+    transition: transform .35s ease;
+  }
+  .nav-links.open { transform: translateY(0); }
+  .nav-toggle { display: flex; }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  .cake-grid { grid-template-columns: 1fr; }
+  .hero-text h1 { font-size: 2.6rem; }
+}
+
+/* ---------- 16. Reduced-motion accessibility ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}

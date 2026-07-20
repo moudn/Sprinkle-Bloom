@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How It Works | Sprinkle &amp; Bloom 🧁</title>
+  <meta name="description" content="How Sprinkle & Bloom turns your cake dreams into delicious reality." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="particle-field" id="particleField" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true">🧁</div>
+
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="index.html" class="logo">
+        <span class="logo-emoji">🧁</span>
+        <span class="logo-text">Sprinkle&nbsp;&amp;&nbsp;Bloom</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="cakes.html">Our Cakes</a></li>
+        <li><a href="how.html" class="active">How It Works</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="contact.html" class="btn btn-primary btn-small">Order Now</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section how">
+      <div class="container">
+        <h2 class="section-title reveal">How It Works</h2>
+        <p class="section-sub reveal">Three sprinkle-filled steps to your dream cake. 🍰</p>
+
+        <div class="steps">
+          <div class="step reveal">
+            <div class="step-icon">💭</div>
+            <h3>1. Dream It</h3>
+            <p>Tell us your wildest cake fantasy — flavors, theme, and the occasion. No idea is too whimsical!</p>
+          </div>
+          <div class="step reveal">
+            <div class="step-icon">🎨</div>
+            <h3>2. Design It</h3>
+            <p>We sketch a playful design and tweak it together until every sprinkle is just right.</p>
+          </div>
+          <div class="step reveal">
+            <div class="step-icon">😋</div>
+            <h3>3. Savor It</h3>
+            <p>We bake it fresh and deliver a masterpiece that tastes as good as it looks.</p>
+          </div>
+        </div>
+
+        <div class="center-btn reveal">
+          <a href="contact.html" class="btn btn-primary">Start Your Cake Dream 🧁</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container about-container">
+        <div class="about-text reveal">
+          <h2 class="section-title" style="text-align:left;">A Few Sweet Details</h2>
+          <p>🕒 <strong>Lead time:</strong> Most custom cakes need 5–7 days' notice.</p>
+          <p>🚚 <strong>Delivery:</strong> Local drop-off available, or collect from our kitchen.</p>
+          <p>🌱 <strong>Ingredients:</strong> Real butter, fresh fruit, and a generous handful of love.</p>
+        </div>
+        <div class="about-art reveal" aria-hidden="true">
+          <div class="blob-card"><span class="big-emoji">🎂</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">📸</a>
+        <a href="#" aria-label="Pinterest">📌</a>
+        <a href="#" aria-label="Facebook">👍</a>
+        <a href="#" aria-label="TikTok">🎵</a>
+      </div>
+      <p class="footer-love">Baked with Love 💗 at Sprinkle &amp; Bloom</p>
+      <p class="footer-copy">© <span id="year"></span> Sprinkle &amp; Bloom Bakery. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

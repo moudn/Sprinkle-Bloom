@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Sprinkle &amp; Bloom 🧁</title>
+  <meta name="description" content="The story behind Sprinkle & Bloom whimsical custom cake bakery." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="particle-field" id="particleField" aria-hidden="true"></div>
+  <div class="cursor" id="cursor" aria-hidden="true">🧁</div>
+
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="index.html" class="logo">
+        <span class="logo-emoji">🧁</span>
+        <span class="logo-text">Sprinkle&nbsp;&amp;&nbsp;Bloom</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="cakes.html">Our Cakes</a></li>
+        <li><a href="how.html">How It Works</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="contact.html" class="btn btn-primary btn-small">Order Now</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="section about">
+      <div class="container about-container">
+        <div class="about-text reveal">
+          <h2 class="section-title" style="text-align:left;">Baking Magic Since Day One</h2>
+          <p>
+            Sprinkle &amp; Bloom began in a tiny kitchen with a big whisk and a
+            bigger imagination. We believe every celebration deserves a cake that
+            makes people smile before they even take a bite.
+          </p>
+          <p>
+            Everything is handmade in small batches with real butter, fresh
+            fruit, and a generous handful of love. 💕
+          </p>
+          <p>
+            From birthday unicorns to elegant wedding florals, we pour a little
+            joy into every crumb — because life is sweet, and so are you.
+          </p>
+          <div class="center-btn" style="text-align:left;margin-top:1.5rem;">
+            <a href="contact.html" class="btn btn-primary">Order Your Custom Cake 🧁</a>
+          </div>
+        </div>
+        <div class="about-art reveal" aria-hidden="true">
+          <div class="blob-card"><span class="big-emoji">🎂</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">📸</a>
+        <a href="#" aria-label="Pinterest">📌</a>
+        <a href="#" aria-label="Facebook">👍</a>
+        <a href="#" aria-label="TikTok">🎵</a>
+      </div>
+      <p class="footer-love">Baked with Love 💗 at Sprinkle &amp; Bloom</p>
+      <p class="footer-copy">© <span id="year"></span> Sprinkle &amp; Bloom Bakery. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

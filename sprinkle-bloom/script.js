@@ -1,7 +1,7 @@
 /* =====================================================================
-   Sprinkle & Bloom 🧁 — vanilla JS
-   Features: sticky header, scroll-reveal, floating particles,
-   custom cursor, mobile nav, and a friendly form handler.
+   Sprinkle & Bloom — vanilla JS
+   Features: sticky header, scroll-reveal, drifting balloons, parallax,
+   3D card tilt, mobile nav, and a friendly form handler.
    No external libraries required.
    ===================================================================== */
 
@@ -48,93 +48,32 @@
   }
 
   /* ---------------------------------------------------------------
-     3. Floating background particles (hearts / sprinkles / stars)
-        Spawn randomly and let CSS @keyframes "rise" carry them up.
+     3. Drifting watercolor balloons — every so often one floats up
+        the page. Kept rare and faint so it stays a delicate detail.
      --------------------------------------------------------------- */
   const field = $("#particleField");
-  const GLYPHS = ["✨", "💖", "🧁", "🌸", "⭐", "🍬", "💕"];
   const BALLOONS = [
     "images/balloon-pink.png",
     "images/balloon-coral.png",
     "images/balloon-red.png",
   ];
-  // kept low on purpose to avoid visual clutter over the content
-  const PARTICLES = 8;
 
-  function spawnParticle() {
-    const p = document.createElement("span");
-    p.className = "particle";
-    p.textContent = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
-    // random horizontal start, size, and speed
-    p.style.left = Math.random() * 100 + "vw";
-    p.style.fontSize = (0.8 + Math.random() * 1.2).toFixed(2) + "rem";
-    const duration = (14 + Math.random() * 12).toFixed(2);
-    p.style.animationDuration = duration + "s";
-    field.appendChild(p);
-    // remove after it finishes rising so the DOM stays tidy
-    p.addEventListener("animationend", () => p.remove());
-  }
-
-  // every so often a little watercolor balloon drifts up the page
   function spawnBalloon() {
     const b = document.createElement("img");
-    b.className = "particle balloon-particle";
+    b.className = "balloon-particle";
     b.src = BALLOONS[Math.floor(Math.random() * BALLOONS.length)];
     b.alt = "";
     b.style.left = 5 + Math.random() * 90 + "vw";
-    b.style.width = (34 + Math.random() * 26).toFixed(0) + "px";
-    b.style.animationDuration = (20 + Math.random() * 14).toFixed(2) + "s";
+    b.style.width = (30 + Math.random() * 22).toFixed(0) + "px";
+    b.style.animationDuration = (24 + Math.random() * 14).toFixed(2) + "s";
     field.appendChild(b);
+    // remove after it finishes rising so the DOM stays tidy
     b.addEventListener("animationend", () => b.remove());
   }
 
-  if (!reducedMotion) {
-    // initial batch (staggered so they don't all appear at once)
-    for (let i = 0; i < PARTICLES; i++) {
-      setTimeout(spawnParticle, Math.random() * 12000);
-    }
-    // slow, gentle trickle
-    setInterval(spawnParticle, 2800);
-    setTimeout(spawnBalloon, 4000);
-    setInterval(spawnBalloon, 18000);
-  }
-
-  /* ---------------------------------------------------------------
-     4. Custom cupcake cursor (only on devices with a fine pointer /
-        hover capability, i.e. real mice — not touch screens).
-     --------------------------------------------------------------- */
-  const cursor = $("#cursor");
-  if (finePointer) {
-    cursor.style.display = "block";
-    document.body.style.cursor = "none"; // hide native cursor
-
-    let mouseX = 0, mouseY = 0, curX = 0, curY = 0;
-    window.addEventListener("mousemove", (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-    });
-
-    // smooth follow via requestAnimationFrame
-    const follow = () => {
-      curX += (mouseX - curX) * 0.3;
-      curY += (mouseY - curY) * 0.3;
-      cursor.style.transform =
-        `translate(${curX}px, ${curY}px) translate(-50%, -50%)`;
-      requestAnimationFrame(follow);
-    };
-    follow();
-
-    // fade in once the pointer actually moves, and fade out when it
-    // leaves the window (prevents a stuck cupcake in the corner)
-    window.addEventListener("mousemove", () => { cursor.style.opacity = "1"; });
-    document.addEventListener("mouseleave", () => { cursor.style.opacity = "0"; });
-    document.addEventListener("mouseenter", () => { cursor.style.opacity = "1"; });
-
-    // grow cursor over interactive elements for feedback
-    $$("a, button, input, textarea, .polaroid, .step, .cake-card").forEach((el) => {
-      el.addEventListener("mouseenter", () => cursor.classList.add("active"));
-      el.addEventListener("mouseleave", () => cursor.classList.remove("active"));
-    });
+  if (field && !reducedMotion) {
+    setTimeout(spawnBalloon, 5000);
+    setInterval(spawnBalloon, 22000);
   }
 
   /* ---------------------------------------------------------------
@@ -172,14 +111,14 @@
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       if (!form.checkValidity()) {
-        note.style.color = "#d36b8a";
-        note.textContent = "Oops! Please fill in all the fields 🍓";
+        note.style.color = "#B0716F";
+        note.textContent = "Please fill in all the fields before sending.";
         form.reportValidity();
         return;
       }
       const name = $("#name").value.trim().split(" ")[0] || "friend";
-      note.style.color = "#4a8a4a";
-      note.textContent = `Yum! Thanks ${name} — we'll whisk up your dream cake soon 🧁💕`;
+      note.style.color = "#7A8B6F";
+      note.textContent = `Thank you, ${name} — we'll be in touch to whisk up your dream cake.`;
       form.reset();
     });
   }
@@ -265,10 +204,10 @@
     $$("[data-tilt]").forEach((card) => {
       card.addEventListener("mousemove", (e) => {
         const r = card.getBoundingClientRect();
-        const rx = ((e.clientY - r.top) / r.height - 0.5) * -14; // deg
-        const ry = ((e.clientX - r.left) / r.width - 0.5) * 14;
+        const rx = ((e.clientY - r.top) / r.height - 0.5) * -7; // deg
+        const ry = ((e.clientX - r.left) / r.width - 0.5) * 7;
         card.style.transform =
-          `translateY(-12px) scale(1.04) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
+          `translateY(-8px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg)`;
       });
       card.addEventListener("mouseleave", () => {
         card.style.transform = ""; // hand control back to the stylesheet

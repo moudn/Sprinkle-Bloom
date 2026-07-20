@@ -1,36 +1,38 @@
 /* =====================================================================
-   Sprinkle & Bloom 🧁 — Whimsical Custom Cake Bakery
-   Single, well-commented stylesheet.
-   Palette & fonts are defined as CSS variables in :root below.
+   Sprinkle & Bloom — Whimsical Custom Cake Atelier
+   Editorial patisserie design: warm cream paper, elegant serif display
+   type, letter-spaced small caps, watercolor illustrations, and gentle
+   drifting motion.
    ===================================================================== */
 
-/* ---------- 1. Design tokens (CSS variables) ---------- */
+/* ---------- 1. Design tokens ---------- */
 :root {
-  /* Pastel palette */
-  --pink:   #FFB6C1;
-  --mint:   #98FB98;
-  --white:  #FFFFFF;
-  --gold:   #FFD700;
-  --peach:  #FFDAB9;
-
-  /* Derived tints for backgrounds / borders */
-  --pink-soft:  #FFF0F4;
-  --mint-soft:  #EAFBEA;
-  --ink:        #6b5563;   /* soft brownish text for readability on pastels */
-  --ink-soft:   #8a7682;
+  /* Warm paper + muted confection palette */
+  --cream:      #FBF6EF;   /* page background — warm paper */
+  --cream-deep: #F4EADD;   /* alternate section background */
+  --white:      #FFFDF9;   /* card surfaces */
+  --ink:        #4A3B33;   /* warm espresso text */
+  --ink-soft:   #93816F;   /* secondary text */
+  --rose:       #C98B8E;   /* primary accent — dusty rose */
+  --rose-deep:  #B0716F;   /* accent hover */
+  --rose-mist:  #F3E2DE;   /* rose tint for washes */
+  --sage-mist:  #E9EEE2;   /* sage tint for washes */
+  --butter:     #F4E7CB;   /* butter tint */
+  --gold:       #C2A25E;   /* fine gold details */
+  --line:       rgba(74, 59, 51, 0.14);  /* hairline rules */
 
   /* Fonts */
-  --font-head: "Patrick Hand", cursive;
-  --font-body: "Quicksand", sans-serif;
+  --font-head: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Jost", "Century Gothic", sans-serif;
 
-  /* Shape + shadow language */
-  --radius:    24px;
-  --radius-lg: 36px;
-  --shadow:    0 12px 30px rgba(255, 182, 193, 0.35);
-  --shadow-sm: 0 6px 16px rgba(255, 182, 193, 0.30);
+  /* Shape + shadow language: soft paper, no candy gloss */
+  --radius:    18px;
+  --radius-lg: 28px;
+  --shadow:    0 18px 40px -18px rgba(74, 59, 51, 0.25);
+  --shadow-sm: 0 10px 24px -14px rgba(74, 59, 51, 0.22);
 
   /* Layout */
-  --maxw: 1140px;
+  --maxw: 1200px;
 }
 
 /* ---------- 2. Reset & base ---------- */
@@ -42,17 +44,20 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-body);
+  font-weight: 300;
   color: var(--ink);
-  background:
-    radial-gradient(circle at 15% 10%, var(--pink-soft) 0%, transparent 45%),
-    radial-gradient(circle at 85% 20%, var(--mint-soft) 0%, transparent 45%),
-    var(--white);
-  line-height: 1.6;
+  background: var(--cream);
+  line-height: 1.7;
+  letter-spacing: 0.01em;
   overflow-x: hidden;
-  /* hide native cursor on desktop; custom cupcake cursor takes over (see JS) */
 }
 
-h1, h2, h3 { font-family: var(--font-head); font-weight: 400; line-height: 1.1; }
+h1, h2, h3 {
+  font-family: var(--font-head);
+  font-weight: 500;
+  line-height: 1.12;
+  color: var(--ink);
+}
 
 a { color: inherit; text-decoration: none; }
 
@@ -62,123 +67,146 @@ img, svg { display: block; max-width: 100%; }
   width: 100%;
   max-width: var(--maxw);
   margin-inline: auto;
-  padding-inline: clamp(1rem, 4vw, 2.5rem);
+  padding-inline: clamp(1.2rem, 4vw, 3rem);
 }
 
-/* ---------- 3. Buttons (micro-interactions) ---------- */
+/* Small-caps letter-spaced label — the signature editorial detail */
+.eyebrow,
+.overline {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--rose-deep);
+}
+
+/* ---------- 3. Buttons ---------- */
 .btn {
   display: inline-block;
   font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 1rem;
-  padding: 0.85rem 1.8rem;
-  border: none;
+  font-weight: 400;
+  font-size: 0.8rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 1.05rem 2.4rem;
+  border: 1px solid transparent;
   border-radius: 999px;
   cursor: pointer;
-  transition: transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s, background .25s;
-  will-change: transform;
+  transition: background .3s ease, color .3s ease, border-color .3s ease,
+              transform .3s ease, box-shadow .3s ease;
 }
 .btn-primary {
-  background: linear-gradient(135deg, var(--pink), var(--peach));
-  color: #fff;
-  box-shadow: var(--shadow);
-}
-.btn-primary:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 16px 36px rgba(255, 182, 193, 0.55);
-  background: linear-gradient(135deg, var(--peach), var(--pink));
-}
-.btn-ghost {
-  background: var(--white);
-  color: var(--ink);
+  background: var(--rose);
+  color: var(--white);
   box-shadow: var(--shadow-sm);
 }
-.btn-ghost:hover { transform: translateY(-3px) scale(1.05); background: var(--mint-soft); }
-.btn-small { padding: 0.55rem 1.2rem; font-size: .9rem; }
-.btn-block { width: 100%; }
+.btn-primary:hover {
+  background: var(--rose-deep);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+.btn-ghost:hover {
+  border-color: var(--rose);
+  color: var(--rose-deep);
+  transform: translateY(-2px);
+}
+.btn-small { padding: 0.65rem 1.5rem; font-size: 0.7rem; }
+.btn-block { width: 100%; text-align: center; }
 
-/* center a lone button under a section */
 .center-btn {
   display: flex;
   justify-content: center;
-  margin-top: 2.2rem;
+  margin-top: 2.8rem;
 }
 
-/* make an entire polaroid card a clickable link */
 .polaroid-link { display: block; }
-
-/* CTA banner reuses .order-box styling */
-.cta-banner { text-align: center; }
 
 /* ---------- 4. Header / Navigation ---------- */
 .header {
   position: sticky;
   top: 0;
   z-index: 50;
-  /* transparent at top, JS adds .scrolled for solid bg */
   background: transparent;
-  transition: background .35s, box-shadow .35s, padding .35s;
-  padding-block: 0.6rem;
+  transition: background .35s, box-shadow .35s, border-color .35s;
+  border-bottom: 1px solid transparent;
+  padding-block: 1rem;
 }
 .header.scrolled {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(251, 246, 239, 0.92);
   backdrop-filter: blur(10px);
-  box-shadow: 0 6px 20px rgba(255, 182, 193, 0.25);
+  border-bottom-color: var(--line);
 }
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+.logo { line-height: 1.15; }
+.logo-text {
+  display: block;
   font-family: var(--font-head);
-  font-size: 1.5rem;
+  font-size: 1.65rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
   color: var(--ink);
 }
-.logo-emoji { font-size: 1.7rem; animation: bob 3s ease-in-out infinite; }
+.logo-tag {
+  display: block;
+  font-size: 0.58rem;
+  font-weight: 400;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
 
 .nav-links {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 1.4rem;
-  font-weight: 600;
+  gap: 2.2rem;
 }
 .nav-links a:not(.btn) {
   position: relative;
+  font-size: 0.74rem;
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
   padding: 0.3rem 0;
-  transition: color .2s;
+  transition: color .25s;
 }
 .nav-links a:not(.btn)::after {
   content: "";
   position: absolute;
-  left: 0; bottom: -2px;
-  width: 0; height: 3px;
-  border-radius: 3px;
-  background: var(--pink);
-  transition: width .25s;
+  left: 50%; bottom: -2px;
+  transform: translateX(-50%);
+  width: 0; height: 1px;
+  background: var(--rose-deep);
+  transition: width .3s ease;
 }
-.nav-links a:not(.btn):hover { color: var(--pink); }
+.nav-links a:not(.btn):hover { color: var(--rose-deep); }
 .nav-links a:not(.btn):hover::after { width: 100%; }
-/* current page indicator */
-.nav-links a.active { color: var(--pink); }
+.nav-links a.active { color: var(--rose-deep); }
 .nav-links a.active::after { width: 100%; }
 
 /* hamburger (mobile) */
 .nav-toggle {
   display: none;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
   background: none;
   border: none;
   cursor: pointer;
   padding: 6px;
 }
 .nav-toggle span {
-  width: 26px; height: 3px; border-radius: 3px;
+  width: 26px; height: 1.5px;
   background: var(--ink);
   transition: transform .3s, opacity .3s;
 }
@@ -186,54 +214,50 @@ img, svg { display: block; max-width: 100%; }
 /* ---------- 5. Hero ---------- */
 .hero {
   position: relative;
-  padding-block: clamp(3rem, 8vw, 6rem);
-  min-height: 88vh;
+  padding-block: clamp(2.5rem, 7vw, 5rem) clamp(4rem, 9vw, 7rem);
+  min-height: 86vh;
   display: flex;
   align-items: center;
 }
 .hero-container {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
   align-items: center;
 }
-.eyebrow {
-  display: inline-block;
-  background: var(--mint-soft);
-  color: #4a8a4a;
-  font-weight: 700;
-  font-size: .85rem;
-  padding: 0.35rem 1rem;
-  border-radius: 999px;
-  margin-bottom: 1rem;
-  box-shadow: var(--shadow-sm);
-}
+.hero-text .eyebrow { margin-bottom: 1.6rem; }
 .hero-text h1 {
-  font-size: clamp(2.6rem, 6vw, 4.4rem);
-  color: var(--ink);
+  font-size: clamp(3rem, 6.5vw, 5.2rem);
+  font-weight: 500;
+  letter-spacing: 0.01em;
 }
 .hero-text .highlight {
-  color: var(--pink);
-  position: relative;
-}
-.hero-text .highlight::after {
-  content: "";
-  position: absolute; left: 0; bottom: 4px;
-  width: 100%; height: 12px;
-  background: var(--gold);
-  opacity: .35;
-  border-radius: 12px;
-  z-index: -1;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--rose-deep);
 }
 .hero-sub {
-  margin: 1.2rem 0 1.8rem;
-  font-size: 1.15rem;
+  margin: 1.6rem 0 2.4rem;
+  font-size: 1.02rem;
+  font-weight: 300;
   color: var(--ink-soft);
-  max-width: 34ch;
+  max-width: 40ch;
 }
-.hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+.hero-cta { display: flex; gap: 1.4rem; align-items: center; flex-wrap: wrap; }
+/* quiet text link as the secondary action */
+.link-arrow {
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.35rem;
+  transition: color .25s, border-color .25s;
+}
+.link-arrow:hover { color: var(--rose-deep); border-color: var(--rose-deep); }
 
-/* Hero illustration: hand-painted cake floating over a morphing blob */
+/* Hero illustration */
 .hero-image {
   position: relative;
   display: flex;
@@ -244,411 +268,489 @@ img, svg { display: block; max-width: 100%; }
   position: absolute;
   inset: 0;
   margin: auto;
-  width: min(440px, 92%);
+  width: min(460px, 94%);
   aspect-ratio: 1 / 1;
-  background: radial-gradient(circle at 35% 30%, #fff6f9 0%, var(--pink-soft) 55%, #ffe4ec 100%);
-  border-radius: 58% 42% 55% 45% / 50% 55% 45% 50%;
-  animation: blobMorph 12s ease-in-out infinite alternate;
+  background: radial-gradient(circle at 38% 32%, var(--white) 0%, var(--rose-mist) 72%);
+  border-radius: 50%;
+  border: 1px solid rgba(201, 139, 142, 0.18);
+  animation: blobBreathe 10s ease-in-out infinite;
   z-index: 0;
+}
+/* fine dotted orbit ring around the plate — delicate, patisserie-menu detail */
+.hero-blob::after {
+  content: "";
+  position: absolute;
+  inset: -7%;
+  border-radius: 50%;
+  border: 1px dashed rgba(194, 162, 94, 0.4);
+  animation: slowSpin 60s linear infinite;
 }
 .hero-cake {
   position: relative;
   z-index: 1;
-  width: min(400px, 82%);
+  width: min(400px, 80%);
   height: auto;
-  filter: drop-shadow(0 24px 30px rgba(214, 116, 141, 0.28));
-  animation: floaty 6s ease-in-out infinite;
+  filter: drop-shadow(0 26px 26px rgba(74, 59, 51, 0.18));
+  animation: floaty 7s ease-in-out infinite;
 }
-/* small companion desserts orbiting the hero cake */
 .hero-mini {
   position: absolute;
   z-index: 2;
-  width: clamp(70px, 9vw, 110px);
+  width: clamp(64px, 8vw, 100px);
   height: auto;
-  filter: drop-shadow(0 10px 14px rgba(214, 116, 141, 0.25));
+  filter: drop-shadow(0 10px 12px rgba(74, 59, 51, 0.16));
 }
-.mini-macaron { top: 4%; left: 2%; animation: floaty 5s ease-in-out infinite reverse; }
-.mini-cupcake { bottom: 2%; right: 0; animation: floaty 7s ease-in-out .8s infinite; }
+.mini-macaron { top: 6%; left: 3%; animation: floaty 6s ease-in-out infinite reverse; }
+.mini-cupcake { bottom: 4%; right: 1%; animation: floaty 8s ease-in-out .8s infinite; }
 
-/* Decorative floating balloons (parallax handled in JS via data-depth/data-speed) */
+/* Floating balloons (parallax via JS -> --px/--py) */
 .float-decor { pointer-events: none; user-select: none; will-change: transform; }
 .hero-balloon {
   position: absolute;
-  width: clamp(54px, 7vw, 96px);
+  width: clamp(44px, 5.5vw, 78px);
   height: auto;
   z-index: 0;
-  opacity: .9;
-  filter: drop-shadow(0 12px 16px rgba(214, 116, 141, 0.18));
+  opacity: .65;
+  filter: drop-shadow(0 14px 14px rgba(74, 59, 51, 0.12));
 }
-.balloon-1 { top: 12%;  left: 4%;  animation: sway 7s ease-in-out infinite; }
-.balloon-2 { top: 8%;   right: 6%; animation: sway 9s ease-in-out 1s infinite reverse; }
-.balloon-3 { bottom: 10%; left: 44%; width: clamp(44px, 5vw, 72px); animation: sway 8s ease-in-out .5s infinite; }
+.balloon-1 { top: 14%;  left: 5%;  animation: sway 9s ease-in-out infinite; }
+.balloon-2 { top: 10%;  right: 7%; animation: sway 11s ease-in-out 1s infinite reverse; }
+.balloon-3 { bottom: 12%; left: 45%; width: clamp(36px, 4vw, 60px); animation: sway 10s ease-in-out .5s infinite; }
 
-/* balloons peeking into content sections */
 .section-balloon {
   position: absolute;
-  top: 6%;
-  right: 3%;
-  width: clamp(50px, 6vw, 88px);
+  top: 8%;
+  right: 4%;
+  width: clamp(44px, 5vw, 72px);
   height: auto;
   z-index: 0;
-  opacity: .8;
-  animation: sway 8s ease-in-out infinite;
+  opacity: .5;
+  animation: sway 10s ease-in-out infinite;
 }
-.section-balloon-left { right: auto; left: 3%; top: 40%; animation-delay: 1.2s; }
+.section-balloon-left { right: auto; left: 4%; top: 42%; animation-delay: 1.2s; }
 .cta-section { position: relative; }
 .cta-balloon {
   position: absolute;
-  top: -8%;
-  right: 8%;
-  width: clamp(54px, 6vw, 90px);
+  top: -6%;
+  right: 10%;
+  width: clamp(44px, 5vw, 72px);
   z-index: 2;
-  animation: sway 7s ease-in-out infinite;
+  opacity: .7;
+  animation: sway 9s ease-in-out infinite;
 }
 
-/* Scroll hint: a little bouncing pill at the bottom of the hero */
+/* Scroll hint — a single fine line that draws downward */
 .scroll-hint {
   position: absolute;
   left: 50%;
-  bottom: 1.6rem;
+  bottom: 0;
   transform: translateX(-50%);
-  width: 28px; height: 46px;
-  border: 3px solid var(--pink);
-  border-radius: 999px;
   display: flex;
-  justify-content: center;
-  padding-top: 8px;
-  opacity: .7;
-  transition: opacity .25s;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
 }
-.scroll-hint:hover { opacity: 1; }
-.scroll-hint-dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--pink);
-  animation: scrollDot 1.8s ease-in-out infinite;
+.scroll-hint-line {
+  width: 1px;
+  height: 52px;
+  background: var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.scroll-hint-line::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 40%;
+  background: var(--rose-deep);
+  animation: lineDrop 2.2s ease-in-out infinite;
 }
 
 /* Hero title reveal: JS wraps words in .title-word spans */
 .title-word {
   display: inline-block;
   opacity: 0;
-  transform: translateY(0.6em) rotate(4deg);
-  animation: wordRise .7s cubic-bezier(.34,1.56,.64,1) forwards;
+  transform: translateY(0.5em);
+  animation: wordRise .9s cubic-bezier(.22,.61,.36,1) forwards;
 }
 
-@keyframes wordRise {
-  to { opacity: 1; transform: translateY(0) rotate(0); }
+@keyframes wordRise { to { opacity: 1; transform: translateY(0); } }
+@keyframes lineDrop {
+  0%   { transform: translateY(-100%); }
+  60%  { transform: translateY(250%); }
+  100% { transform: translateY(250%); }
+}
+@keyframes slowSpin { to { transform: rotate(360deg); } }
+@keyframes blobBreathe {
+  0%,100% { transform: scale(1); }
+  50%     { transform: scale(1.035); }
 }
 /* --px / --py are parallax offsets driven by JS (mouse + scroll);
    baking them into the keyframes lets both effects compose. */
 @keyframes floaty {
-  0%,100% { transform: translate(var(--px, 0px), var(--py, 0px)) rotate(-1deg); }
-  50%     { transform: translate(var(--px, 0px), calc(var(--py, 0px) - 14px)) rotate(1.5deg); }
+  0%,100% { transform: translate(var(--px, 0px), var(--py, 0px)); }
+  50%     { transform: translate(var(--px, 0px), calc(var(--py, 0px) - 12px)); }
 }
 @keyframes sway {
-  0%,100% { transform: translate(var(--px, 0px), var(--py, 0px)) rotate(-4deg); }
-  50%     { transform: translate(var(--px, 0px), calc(var(--py, 0px) - 18px)) rotate(5deg); }
-}
-@keyframes blobMorph {
-  0%   { border-radius: 58% 42% 55% 45% / 50% 55% 45% 50%; transform: scale(1) rotate(0); }
-  50%  { border-radius: 45% 55% 48% 52% / 55% 45% 55% 45%; transform: scale(1.05) rotate(3deg); }
-  100% { border-radius: 52% 48% 42% 58% / 45% 52% 48% 55%; transform: scale(.98) rotate(-3deg); }
-}
-@keyframes bob    { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-@keyframes scrollDot {
-  0%   { transform: translateY(0); opacity: 1; }
-  70%  { transform: translateY(16px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 0; }
+  0%,100% { transform: translate(var(--px, 0px), var(--py, 0px)) rotate(-3deg); }
+  50%     { transform: translate(var(--px, 0px), calc(var(--py, 0px) - 14px)) rotate(3deg); }
 }
 
-/* ---------- 5b. Marquee ribbon (patisserie-style flowing text) ---------- */
+/* ---------- 5b. Marquee ribbon ---------- */
 .marquee {
   overflow: hidden;
-  background: linear-gradient(90deg, var(--pink-soft), var(--mint-soft), var(--pink-soft));
-  padding-block: 0.9rem;
-  border-block: 2px dashed rgba(255, 182, 193, 0.5);
-  transform: rotate(-1deg) scale(1.02);
+  border-block: 1px solid var(--line);
+  padding-block: 1.1rem;
+  background: var(--white);
 }
 .marquee-track {
   display: flex;
   width: max-content;
-  animation: marquee 26s linear infinite;
+  animation: marquee 32s linear infinite;
 }
 .marquee-track span {
   font-family: var(--font-head);
-  font-size: 1.35rem;
-  color: var(--ink);
+  font-style: italic;
+  font-size: 1.25rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
   white-space: nowrap;
   padding-right: 1rem;
 }
+.marquee-track .sep { color: var(--gold); font-style: normal; }
 .marquee:hover .marquee-track { animation-play-state: paused; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
+/* ---------- 5c. Scalloped divider (patisserie-awning edge) ---------- */
+.scallop {
+  height: 22px;
+  background:
+    radial-gradient(circle at 50% 0, var(--cream-deep) 0 10px, transparent 11px)
+    top center / 28px 22px repeat-x;
+}
+.scallop-flip { transform: scaleY(-1); }
+
 /* ---------- 6. Generic sections ---------- */
-.section { padding-block: clamp(3.5rem, 8vw, 6rem); position: relative; }
+.section { padding-block: clamp(4rem, 9vw, 7.5rem); position: relative; }
+.section-alt { background: var(--cream-deep); }
+.section-head { text-align: center; margin-bottom: 3.2rem; }
+.section-head .overline { margin-bottom: 1rem; }
 .section-title {
   text-align: center;
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2.1rem, 4.6vw, 3.2rem);
   color: var(--ink);
 }
 .section-sub {
   text-align: center;
   color: var(--ink-soft);
-  margin-top: .6rem;
-  margin-bottom: 2.5rem;
-  font-size: 1.05rem;
+  margin-top: .8rem;
+  font-size: 0.98rem;
+  font-weight: 300;
+}
+/* short gold rule beneath a section title */
+.title-rule {
+  width: 46px;
+  height: 1px;
+  background: var(--gold);
+  margin: 1.4rem auto 0;
 }
 
-/* ---------- 7. Cakes gallery (polaroid cards) ---------- */
+/* ---------- 7. Cakes gallery ---------- */
 .cake-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  perspective: 1200px;       /* lets the JS 3D tilt read as depth */
+  gap: clamp(1.4rem, 3vw, 2.4rem);
+  perspective: 1400px;
 }
-.cake-grid-4 { grid-template-columns: repeat(4, 1fr); gap: 1.6rem; }
+.cake-grid-4 { grid-template-columns: repeat(4, 1fr); }
 .cake-card { display: flex; justify-content: center; }
 .polaroid {
   background: var(--white);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 1rem 1rem 1.4rem;
-  box-shadow: var(--shadow);
+  padding: 1.4rem 1.4rem 1.7rem;
+  box-shadow: var(--shadow-sm);
   width: 100%;
-  max-width: 320px;
-  transition: transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .4s;
-  /* slight random tilt for charm; JS 3D tilt takes over while hovering */
-  transform: rotate(-2deg);
+  max-width: 340px;
+  transition: transform .5s cubic-bezier(.22,.61,.36,1), box-shadow .5s;
   transform-style: preserve-3d;
 }
-.cake-card:nth-child(even) .polaroid { transform: rotate(2deg); }
 .polaroid:hover {
-  transform: translateY(-12px) rotate(0deg) scale(1.04);
-  box-shadow: 0 22px 44px rgba(255, 182, 193, 0.5);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow);
 }
 
 .cake-photo {
+  position: relative;
   aspect-ratio: 1 / 1;
-  border-radius: 16px;
-  overflow: hidden;
+  border-radius: 12px;
   display: grid;
   place-items: center;
-  padding: 8%;
+  padding: 10%;
 }
+/* delicate tinted plate behind each transparent illustration */
+.cake-photo::before {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  z-index: 0;
+}
+.photo-1 { background: var(--rose-mist); }
+.photo-2 { background: var(--sage-mist); }
+.photo-3 { background: var(--butter); }
+.photo-4 { background: #F3E6DB; }
+.cake-photo::before { background: rgba(255, 253, 249, 0.65); }
 .cake-photo img {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 12px 14px rgba(160, 90, 110, 0.22));
-  transition: transform .5s cubic-bezier(.34,1.56,.64,1);
-  transform: translateZ(30px);  /* pops toward the viewer during 3D tilt */
+  filter: drop-shadow(0 14px 14px rgba(74, 59, 51, 0.18));
+  transition: transform .6s cubic-bezier(.22,.61,.36,1);
+  transform: translateZ(26px);
 }
-.polaroid:hover .cake-photo img { transform: translateZ(30px) scale(1.08) rotate(-2deg); }
-/* soft pastel backdrops behind the transparent illustrations */
-.photo-1 { background: radial-gradient(circle at 30% 25%, #fff8fa, var(--pink-soft) 70%); }
-.photo-2 { background: radial-gradient(circle at 30% 25%, #f6fff6, var(--mint-soft) 70%); }
-.photo-3 { background: radial-gradient(circle at 30% 25%, #fffdf4, #fdf3d8 70%); }
-.photo-4 { background: radial-gradient(circle at 30% 25%, #fff7f2, #ffe9d8 70%); }
+.polaroid:hover .cake-photo img { transform: translateZ(26px) scale(1.05); }
+
 .polaroid figcaption {
   text-align: center;
+  margin-top: 1.2rem;
+}
+.polaroid .cake-name {
+  display: block;
   font-family: var(--font-head);
-  font-size: 1.3rem;
-  margin-top: .8rem;
+  font-size: 1.45rem;
+  font-weight: 500;
   color: var(--ink);
+}
+.polaroid .cake-note {
+  display: block;
+  font-size: 0.66rem;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 0.35rem;
 }
 
 /* ---------- 8. How it works ---------- */
-.how { background: var(--pink-soft); border-radius: var(--radius-lg); margin-inline: clamp(0,3vw,1.5rem); }
 .steps {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: clamp(1.6rem, 3vw, 2.6rem);
 }
 .step {
   background: var(--white);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 2rem 1.5rem;
+  padding: 2.6rem 2rem;
   text-align: center;
-  box-shadow: var(--shadow-sm);
-  transition: transform .3s, box-shadow .3s;
+  transition: transform .4s ease, box-shadow .4s ease;
 }
-.step:hover { transform: translateY(-8px); box-shadow: var(--shadow); }
-.step-icon {
-  font-size: 3rem;
-  margin-bottom: .6rem;
-  animation: bob 3s ease-in-out infinite;
+.step:hover { transform: translateY(-6px); box-shadow: var(--shadow-sm); }
+.step-num {
+  display: inline-grid;
+  place-items: center;
+  width: 52px; height: 52px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--gold);
+  margin-bottom: 1.3rem;
 }
-.step h3 { font-size: 1.5rem; color: var(--pink); margin-bottom: .4rem; }
-.step p { color: var(--ink-soft); }
+.step h3 { font-size: 1.6rem; margin-bottom: .6rem; }
+.step p { color: var(--ink-soft); font-size: 0.94rem; }
 
 /* ---------- 9. About ---------- */
 .about-container {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 2.5rem;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(2.5rem, 6vw, 5rem);
   align-items: center;
 }
-.about-text p { margin-top: 1rem; color: var(--ink-soft); font-size: 1.05rem; }
+.about-text .section-title { text-align: left; }
+.about-text .overline { margin-bottom: 1rem; }
+.about-text p { margin-top: 1.2rem; color: var(--ink-soft); font-size: 1rem; }
+.about-text strong { color: var(--ink); font-weight: 500; }
 .blob-card {
-  background: radial-gradient(circle at 32% 28%, #fff8fa 0%, var(--pink-soft) 55%, var(--mint-soft) 100%);
-  border-radius: 58% 42% 55% 45% / 50% 55% 45% 50%;
+  position: relative;
+  background: radial-gradient(circle at 38% 30%, var(--white) 0%, var(--rose-mist) 75%);
+  border: 1px solid rgba(201, 139, 142, 0.18);
+  border-radius: 50%;
   aspect-ratio: 1 / 1;
   display: grid;
   place-items: center;
-  padding: 10%;
-  box-shadow: var(--shadow);
-  animation: blobMorph 12s ease-in-out infinite alternate;
+  padding: 12%;
+  animation: blobBreathe 10s ease-in-out infinite;
+}
+.blob-card::after {
+  content: "";
+  position: absolute;
+  inset: -6%;
+  border-radius: 50%;
+  border: 1px dashed rgba(194, 162, 94, 0.4);
+  animation: slowSpin 60s linear infinite;
 }
 .blob-art {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 16px 20px rgba(214, 116, 141, 0.28));
-  animation: floaty 6s ease-in-out infinite;
+  filter: drop-shadow(0 18px 18px rgba(74, 59, 51, 0.16));
+  animation: floaty 7s ease-in-out infinite;
 }
 
 /* ---------- 10. Order / contact form ---------- */
-.order { }
 .order-box {
   background: var(--white);
+  border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  padding: clamp(2rem, 5vw, 3.5rem);
-  box-shadow: var(--shadow);
-  max-width: 720px;
+  padding: clamp(2.4rem, 5vw, 4rem);
+  box-shadow: var(--shadow-sm);
+  max-width: 760px;
   margin-inline: auto;
 }
-.order-form { display: grid; gap: 1.2rem; margin-top: 1.5rem; }
-.field { display: grid; gap: .4rem; }
-.field label { font-weight: 700; color: var(--ink); }
+.cta-banner { text-align: center; }
+.order-form { display: grid; gap: 1.6rem; margin-top: 2rem; }
+.field { display: grid; gap: .5rem; }
+.field label {
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
 .field input,
 .field textarea {
   font-family: var(--font-body);
+  font-weight: 300;
   font-size: 1rem;
-  padding: 0.85rem 1rem;
-  border: 2px solid var(--peach);
-  border-radius: 16px;
-  background: var(--pink-soft);
+  padding: 0.9rem 0.2rem;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
   color: var(--ink);
-  transition: border-color .2s, box-shadow .2s;
+  transition: border-color .25s;
   resize: vertical;
 }
+.field input::placeholder,
+.field textarea::placeholder { color: rgba(147, 129, 111, 0.55); }
 .field input:focus,
 .field textarea:focus {
   outline: none;
-  border-color: var(--pink);
-  box-shadow: 0 0 0 4px rgba(255, 182, 193, 0.25);
+  border-bottom-color: var(--rose-deep);
 }
 .form-note {
   text-align: center;
-  font-weight: 700;
-  color: #4a8a4a;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--rose-deep);
   min-height: 1.2em;
 }
 
-.contact-mini { text-align: center; color: var(--ink-soft); }
-.contact-mini a { color: var(--pink); font-weight: 700; }
+.contact-mini {
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+.contact-mini a {
+  color: var(--rose-deep);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+}
 
 /* ---------- 11. Footer ---------- */
 .footer {
-  background: var(--mint-soft);
-  border-top-left-radius: var(--radius-lg);
-  border-top-right-radius: var(--radius-lg);
-  padding-block: 2.5rem;
+  background: var(--cream-deep);
+  border-top: 1px solid var(--line);
+  padding-block: 3.5rem;
+  margin-top: clamp(2rem, 6vw, 4rem);
 }
-.footer-inner { text-align: center; display: grid; gap: .8rem; }
-.footer-social { display: flex; justify-content: center; gap: 1.2rem; font-size: 1.6rem; }
-.footer-social a { transition: transform .25s; }
-.footer-social a:hover { transform: translateY(-4px) scale(1.2) rotate(-8deg); }
-.footer-love { font-family: var(--font-head); font-size: 1.3rem; color: var(--ink); }
-.footer-copy { font-size: .85rem; color: var(--ink-soft); }
+.footer-inner { text-align: center; display: grid; gap: 1.2rem; }
+.footer-social {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.footer-social a {
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  transition: color .25s;
+}
+.footer-social a:hover { color: var(--rose-deep); }
+.footer-love {
+  font-family: var(--font-head);
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--ink);
+}
+.footer-copy { font-size: .78rem; letter-spacing: 0.06em; color: var(--ink-soft); }
 
-/* ---------- 12. Scroll-reveal animation ---------- */
-/* Elements with .reveal start hidden + shifted; JS adds .visible */
+/* ---------- 12. Scroll-reveal ---------- */
 .reveal {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity .7s ease, transform .7s cubic-bezier(.34,1.56,.64,1);
+  transform: translateY(28px);
+  transition: opacity .9s ease, transform .9s cubic-bezier(.22,.61,.36,1);
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
-/* stagger children inside a grid for a cascading effect */
-.cake-grid .reveal:nth-child(2) { transition-delay: .08s; }
-.cake-grid .reveal:nth-child(3) { transition-delay: .16s; }
-.cake-grid .reveal:nth-child(4) { transition-delay: .08s; }
-.cake-grid .reveal:nth-child(5) { transition-delay: .16s; }
-.cake-grid .reveal:nth-child(6) { transition-delay: .24s; }
+.cake-grid .reveal:nth-child(2) { transition-delay: .1s; }
+.cake-grid .reveal:nth-child(3) { transition-delay: .2s; }
+.cake-grid .reveal:nth-child(4) { transition-delay: .3s; }
 .steps .reveal:nth-child(2) { transition-delay: .12s; }
 .steps .reveal:nth-child(3) { transition-delay: .24s; }
 
-/* ---------- 13. Floating background particles ---------- */
+/* ---------- 13. Floating balloon particles ---------- */
 .particle-field {
   position: fixed;
   inset: 0;
-  pointer-events: none;   /* never blocks clicks */
+  pointer-events: none;
   z-index: 1;
   overflow: hidden;
 }
-.particle-field .particle {
-  position: absolute;
-  bottom: -40px;
-  font-size: 1.1rem;
-  opacity: .5;
-  animation: rise linear infinite;
-  will-change: transform;
-}
-/* occasional watercolor balloon drifting up with the sprinkles */
 .particle-field .balloon-particle {
-  width: 44px;
+  position: absolute;
+  width: 40px;
   height: auto;
-  bottom: -140px;
-  opacity: .6;
+  bottom: -160px;
+  opacity: .4;
   animation: balloonRise linear infinite;
+  will-change: transform;
 }
 @keyframes balloonRise {
-  0%   { transform: translateY(0) translateX(0) rotate(-3deg); opacity: 0; }
-  10%  { opacity: .6; }
-  50%  { transform: translateY(-60vh) translateX(24px) rotate(4deg); }
-  90%  { opacity: .6; }
-  100% { transform: translateY(-125vh) translateX(-12px) rotate(-4deg); opacity: 0; }
-}
-@keyframes rise {
-  0%   { transform: translateY(0) rotate(0); opacity: 0; }
-  12%  { opacity: .5; }
-  88%  { opacity: .5; }
-  100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+  0%   { transform: translateY(0) translateX(0) rotate(-2deg); opacity: 0; }
+  10%  { opacity: .4; }
+  50%  { transform: translateY(-60vh) translateX(20px) rotate(3deg); }
+  90%  { opacity: .4; }
+  100% { transform: translateY(-125vh) translateX(-10px) rotate(-3deg); opacity: 0; }
 }
 
-/* ---------- 14. Custom cursor ---------- */
-.cursor {
-  position: fixed;
-  top: 0; left: 0;
-  font-size: 1.6rem;
-  pointer-events: none;
-  z-index: 9999;
-  /* Position is driven every frame by JS (rAF lerp) — do NOT transition
-     transform here, or it double-smooths and lags/jitters (esp. over
-     the animated cake cards). Only the scale gets a gentle transition. */
-  transform: translate(-50%, -50%);
-  transition: scale .15s ease, opacity .2s ease;
-  display: none;            /* enabled by JS only on fine pointers */
-  will-change: transform;
-  opacity: 0;               /* fade in once the mouse moves */
-}
-.cursor.active { scale: 1.5; }
-
-/* ---------- 15. Responsive ---------- */
+/* ---------- 14. Responsive ---------- */
 @media (max-width: 900px) {
   .hero-container { grid-template-columns: 1fr; text-align: center; }
   .hero-sub { margin-inline: auto; }
   .hero-cta { justify-content: center; }
   .hero-image { order: -1; }
-  .hero-balloon { opacity: .55; }
+  .hero-balloon { opacity: .4; }
   .balloon-3 { display: none; }
   .scroll-hint { display: none; }
   .cake-grid, .cake-grid-4 { grid-template-columns: repeat(2, 1fr); }
   .steps { grid-template-columns: 1fr; }
   .about-container { grid-template-columns: 1fr; }
-  .about-art { order: -1; max-width: 280px; margin-inline: auto; }
-  .section-balloon { opacity: .45; }
+  .about-text .section-title { text-align: center; }
+  .about-text { text-align: center; }
+  .about-art { order: -1; max-width: 300px; margin-inline: auto; }
+  .section-balloon { opacity: .3; }
 }
 
 @media (max-width: 620px) {
@@ -656,25 +758,25 @@ img, svg { display: block; max-width: 100%; }
     position: absolute;
     top: 100%; right: 0; left: 0;
     flex-direction: column;
-    gap: 1rem;
-    background: rgba(255,255,255,.97);
-    padding: 1.5rem;
-    border-radius: 0 0 var(--radius) var(--radius);
-    box-shadow: var(--shadow);
+    gap: 1.4rem;
+    background: rgba(251, 246, 239, 0.98);
+    padding: 2rem 1.5rem;
+    border-bottom: 1px solid var(--line);
     transform: translateY(-130%);
-    transition: transform .35s ease;
+    transition: transform .4s ease;
+    z-index: -1;
   }
   .nav-links.open { transform: translateY(0); }
   .nav-toggle { display: flex; }
-  .nav-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
   .nav-toggle.open span:nth-child(2) { opacity: 0; }
-  .nav-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
   .cake-grid, .cake-grid-4 { grid-template-columns: 1fr; }
-  .hero-text h1 { font-size: 2.6rem; }
-  .marquee-track span { font-size: 1.1rem; }
+  .hero-text h1 { font-size: 2.8rem; }
+  .marquee-track span { font-size: 1.05rem; }
 }
 
-/* ---------- 16. Reduced-motion accessibility ---------- */
+/* ---------- 15. Reduced-motion accessibility ---------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: .001ms !important;
@@ -683,4 +785,5 @@ img, svg { display: block; max-width: 100%; }
     scroll-behavior: auto !important;
   }
   .reveal { opacity: 1; transform: none; }
+  .title-word { opacity: 1; transform: none; }
 }

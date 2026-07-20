@@ -8,22 +8,21 @@
     content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:"
   />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <title>Contact &amp; Order | Sprinkle &amp; Bloom 🧁</title>
+  <title>Contact &amp; Order | Sprinkle &amp; Bloom</title>
   <meta name="description" content="Order your custom dream cake from Sprinkle & Bloom." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="particle-field" id="particleField" aria-hidden="true"></div>
-  <div class="cursor" id="cursor" aria-hidden="true">🧁</div>
 
   <header class="header" id="header">
     <nav class="nav container">
       <a href="index.html" class="logo">
-        <span class="logo-emoji">🧁</span>
-        <span class="logo-text">Sprinkle&nbsp;&amp;&nbsp;Bloom</span>
+        <span class="logo-text">Sprinkle &amp; Bloom</span>
+        <span class="logo-tag">Custom Cake Atelier</span>
       </a>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -40,11 +39,15 @@
 
   <main>
     <section id="order" class="section order">
-      <img src="images/balloon-red.png"  alt="" class="section-balloon float-decor" data-speed="-0.08" aria-hidden="true" loading="lazy" />
-      <img src="images/balloon-pink.png" alt="" class="section-balloon section-balloon-left float-decor" data-speed="-0.11" aria-hidden="true" loading="lazy" />
+      <img src="images/balloon-red.png"  alt="" class="section-balloon float-decor" data-speed="-0.06" aria-hidden="true" loading="lazy" />
+      <img src="images/balloon-pink.png" alt="" class="section-balloon section-balloon-left float-decor" data-speed="-0.08" aria-hidden="true" loading="lazy" />
       <div class="container order-box reveal">
-        <h2 class="section-title">Ready to Dream Up a Cake?</h2>
-        <p class="section-sub">Tell us what you're craving and we'll whisk it into reality.</p>
+        <div class="section-head">
+          <span class="overline">Bespoke Orders</span>
+          <h2 class="section-title">Ready to Dream Up a Cake?</h2>
+          <p class="section-sub">Tell us what you're craving and we'll whisk it into reality.</p>
+          <div class="title-rule" aria-hidden="true"></div>
+        </div>
 
         <form class="order-form" id="orderForm" novalidate>
           <div class="field">
@@ -60,12 +63,12 @@
             <textarea id="message" name="message" rows="4" maxlength="2000"
               placeholder="A 3-tier unicorn cake with strawberry filling..." required></textarea>
           </div>
-          <button type="submit" class="btn btn-primary btn-block">Send My Cake Dream 🧁</button>
+          <button type="submit" class="btn btn-primary btn-block">Send My Cake Dream</button>
           <p class="form-note" id="formNote" role="status"></p>
         </form>
 
-        <p class="contact-mini" style="margin-top:1.5rem;">
-          Or email us at <a href="mailto:hello@sprinkleandbloom.com">hello@sprinkleandbloom.com</a> 📮
+        <p class="contact-mini" style="margin-top:2rem;">
+          Or email us at <a href="mailto:hello@sprinkleandbloom.com">hello@sprinkleandbloom.com</a>
         </p>
       </div>
     </section>
@@ -74,12 +77,12 @@
   <footer class="footer">
     <div class="container footer-inner">
       <div class="footer-social">
-        <a href="#" aria-label="Instagram">📸</a>
-        <a href="#" aria-label="Pinterest">📌</a>
-        <a href="#" aria-label="Facebook">👍</a>
-        <a href="#" aria-label="TikTok">🎵</a>
+        <a href="#" aria-label="Instagram">Instagram</a>
+        <a href="#" aria-label="Pinterest">Pinterest</a>
+        <a href="#" aria-label="Facebook">Facebook</a>
+        <a href="#" aria-label="TikTok">TikTok</a>
       </div>
-      <p class="footer-love">Baked with Love 💗 at Sprinkle &amp; Bloom</p>
+      <p class="footer-love">Baked with love at Sprinkle &amp; Bloom</p>
       <p class="footer-copy">© <span id="year"></span> Sprinkle &amp; Bloom Bakery. All rights reserved.</p>
     </div>
   </footer>

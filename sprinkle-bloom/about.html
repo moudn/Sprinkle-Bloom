@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'"
+  />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>About | Sprinkle &amp; Bloom 🧁</title>
   <meta name="description" content="The story behind Sprinkle & Bloom whimsical custom cake bakery." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,6 +40,7 @@
 
   <main>
     <section class="section about">
+      <img src="images/balloon-coral.png" alt="" class="section-balloon float-decor" data-speed="-0.09" aria-hidden="true" loading="lazy" />
       <div class="container about-container">
         <div class="about-text reveal">
           <h2 class="section-title" style="text-align:left;">Baking Magic Since Day One</h2>
@@ -51,12 +57,14 @@
             From birthday unicorns to elegant wedding florals, we pour a little
             joy into every crumb — because life is sweet, and so are you.
           </p>
-          <div class="center-btn" style="text-align:left;margin-top:1.5rem;">
+          <div class="center-btn" style="justify-content:flex-start;margin-top:1.5rem;">
             <a href="contact.html" class="btn btn-primary">Order Your Custom Cake 🧁</a>
           </div>
         </div>
         <div class="about-art reveal" aria-hidden="true">
-          <div class="blob-card"><span class="big-emoji">🎂</span></div>
+          <div class="blob-card">
+            <img src="images/cupcake.png" alt="" class="blob-art" loading="lazy" width="400" height="400" />
+          </div>
         </div>
       </div>
     </section>

@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self' mailto:"
+  />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Contact &amp; Order | Sprinkle &amp; Bloom 🧁</title>
   <meta name="description" content="Order your custom dream cake from Sprinkle & Bloom." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,6 +40,8 @@
 
   <main>
     <section id="order" class="section order">
+      <img src="images/balloon-red.png"  alt="" class="section-balloon float-decor" data-speed="-0.08" aria-hidden="true" loading="lazy" />
+      <img src="images/balloon-pink.png" alt="" class="section-balloon section-balloon-left float-decor" data-speed="-0.11" aria-hidden="true" loading="lazy" />
       <div class="container order-box reveal">
         <h2 class="section-title">Ready to Dream Up a Cake?</h2>
         <p class="section-sub">Tell us what you're craving and we'll whisk it into reality.</p>
@@ -42,15 +49,15 @@
         <form class="order-form" id="orderForm" novalidate>
           <div class="field">
             <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Sweet Tooth Sam" required />
+            <input type="text" id="name" name="name" placeholder="Sweet Tooth Sam" autocomplete="name" maxlength="80" required />
           </div>
           <div class="field">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="sam@example.com" required />
+            <input type="email" id="email" name="email" placeholder="sam@example.com" autocomplete="email" maxlength="254" required />
           </div>
           <div class="field">
             <label for="message">Describe Your Dream Cake</label>
-            <textarea id="message" name="message" rows="4"
+            <textarea id="message" name="message" rows="4" maxlength="2000"
               placeholder="A 3-tier unicorn cake with strawberry filling..." required></textarea>
           </div>
           <button type="submit" class="btn btn-primary btn-block">Send My Cake Dream 🧁</button>

@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'"
+  />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Sprinkle &amp; Bloom 🧁 | Whimsical Custom Cakes</title>
   <meta name="description" content="Sprinkle & Bloom is a whimsical custom cake bakery crafting dream cakes baked to life." />
 
@@ -16,7 +21,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Floating background particles (hearts / sprinkles / stars) -->
+  <!-- Floating background particles (hearts / sprinkles / balloons) -->
   <div class="particle-field" id="particleField" aria-hidden="true"></div>
   <!-- Custom cursor -->
   <div class="cursor" id="cursor" aria-hidden="true">🧁</div>
@@ -44,10 +49,15 @@
   <main>
     <!-- ===== Hero Section ===== -->
     <section id="hero" class="hero">
+      <!-- Decorative balloons drifting with mouse + scroll parallax -->
+      <img src="images/balloon-pink.png"  alt="" class="hero-balloon balloon-1 float-decor" data-depth="30" data-speed="-0.06" aria-hidden="true" />
+      <img src="images/balloon-coral.png" alt="" class="hero-balloon balloon-2 float-decor" data-depth="55" data-speed="-0.12" aria-hidden="true" />
+      <img src="images/balloon-red.png"   alt="" class="hero-balloon balloon-3 float-decor" data-depth="40" data-speed="-0.09" aria-hidden="true" />
+
       <div class="container hero-container">
         <div class="hero-text">
           <span class="eyebrow">Custom cakes, made with love</span>
-          <h1>Dream Cakes, <span class="highlight">Baked to Life</span></h1>
+          <h1 class="hero-title" data-split>Dream Cakes, <span class="highlight">Baked to Life</span></h1>
           <p class="hero-sub">
             From whimsical unicorns to elegant floral designs, we craft the
             cake of your dreams — one sprinkle at a time.
@@ -58,73 +68,68 @@
           </div>
         </div>
 
-        <!-- Animated SVG baker illustration (no external libraries) -->
-        <div class="hero-image reveal">
-          <svg class="baker-scene" viewBox="0 0 300 320" role="img"
-               aria-label="A cute baker decorating a tiered cake">
-            <circle cx="150" cy="170" r="120" class="blob" />
-            <g class="sprinkles">
-              <rect x="60"  y="60"  width="8" height="18" rx="4" fill="#FFB6C1" class="sp sp1" />
-              <rect x="240" y="90"  width="8" height="18" rx="4" fill="#98FB98" class="sp sp2" />
-              <rect x="50"  y="200" width="8" height="18" rx="4" fill="#FFD700" class="sp sp3" />
-              <rect x="250" y="210" width="8" height="18" rx="4" fill="#FFDAB9" class="sp sp4" />
-              <rect x="120" y="40"  width="8" height="18" rx="4" fill="#98FB98" class="sp sp5" />
-            </g>
-            <g class="cake">
-              <rect x="95" y="210" width="110" height="60" rx="22" fill="#FFFFFF" stroke="#FFDAB9" stroke-width="3" />
-              <rect x="115" y="160" width="70" height="55" rx="20" fill="#FFF0F4" stroke="#FFB6C1" stroke-width="3" />
-              <rect x="132" y="120" width="36" height="45" rx="16" fill="#FFFFFF" stroke="#98FB98" stroke-width="3" />
-              <path d="M95 215 q12 22 24 0 q12 22 24 0 q12 22 24 0 q12 22 24 0 q12 22 22 0"
-                    fill="none" stroke="#FFB6C1" stroke-width="4" stroke-linecap="round" />
-              <circle cx="150" cy="112" r="9" fill="#FFB6C1" />
-              <path d="M150 104 q6 -10 14 -8" stroke="#98FB98" stroke-width="3" fill="none" stroke-linecap="round" />
-            </g>
-            <g class="baker">
-              <circle cx="235" cy="150" r="26" fill="#FFF0F4" />
-              <path d="M209 150 a26 26 0 0 1 52 0 z" fill="#FFFFFF" />
-              <ellipse cx="235" cy="118" rx="22" ry="14" fill="#FFFFFF" stroke="#FFDAB9" stroke-width="2"/>
-              <ellipse cx="235" cy="110" rx="14" ry="9"  fill="#FFFFFF" stroke="#FFDAB9" stroke-width="2"/>
-              <circle cx="226" cy="150" r="3" fill="#5a4a42" />
-              <circle cx="244" cy="150" r="3" fill="#5a4a42" />
-              <path d="M229 160 q6 6 12 0" stroke="#FFB6C1" stroke-width="3" fill="none" stroke-linecap="round"/>
-              <path d="M212 158 q-30 6 -45 -20" stroke="#FFF0F4" stroke-width="9" fill="none" stroke-linecap="round"/>
-              <g class="piping">
-                <path d="M168 138 l-14 8 l10 8 z" fill="#FFDAB9" />
-                <circle cx="154" cy="152" r="4" fill="#FFB6C1" class="frost-dot" />
-              </g>
-            </g>
-          </svg>
+        <!-- Hero illustration: hand-painted strawberry cake floating on a blob -->
+        <div class="hero-image">
+          <div class="hero-blob" aria-hidden="true"></div>
+          <img
+            src="images/strawberry-cake.png"
+            alt="A hand-painted layered strawberry cream cake topped with strawberries and cherries"
+            class="hero-cake"
+            data-depth="14"
+            width="500" height="500"
+            fetchpriority="high"
+          />
+          <img src="images/macarons.png" alt="" class="hero-mini mini-macaron float-decor" data-depth="70" aria-hidden="true" width="150" height="150" loading="lazy" />
+          <img src="images/cupcake.png"  alt="" class="hero-mini mini-cupcake float-decor" data-depth="90" aria-hidden="true" width="150" height="150" loading="lazy" />
         </div>
       </div>
+
+      <a href="#featured" class="scroll-hint" aria-label="Scroll down to see our cakes">
+        <span class="scroll-hint-dot"></span>
+      </a>
     </section>
 
+    <!-- ===== Marquee ribbon ===== -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Custom Cakes&ensp;🧁&ensp;Baked with Love&ensp;💗&ensp;Small-Batch Magic&ensp;✨&ensp;Fresh Every Time&ensp;🍓&ensp;</span>
+        <span>Custom Cakes&ensp;🧁&ensp;Baked with Love&ensp;💗&ensp;Small-Batch Magic&ensp;✨&ensp;Fresh Every Time&ensp;🍓&ensp;</span>
+      </div>
+    </div>
+
     <!-- ===== Featured Cakes (teaser) ===== -->
-    <section class="section cakes">
+    <section id="featured" class="section cakes">
       <div class="container">
         <h2 class="section-title reveal">A Taste of Our Magic</h2>
         <p class="section-sub reveal">A few sweet things we've baked lately. ✨</p>
         <div class="cake-grid">
           <figure class="cake-card reveal">
             <a href="cakes.html" class="polaroid-link">
-              <div class="polaroid">
-                <div class="cake-photo photo-1" aria-label="Unicorn cake placeholder"></div>
-                <figcaption>🌈 Unicorn Dream</figcaption>
+              <div class="polaroid" data-tilt>
+                <div class="cake-photo photo-1">
+                  <img src="images/berry-tart.png" alt="Hand-painted berry tart piled with strawberries, cherries and blueberries" loading="lazy" width="400" height="400" />
+                </div>
+                <figcaption>🍓 Berry Patch Tart</figcaption>
               </div>
             </a>
           </figure>
           <figure class="cake-card reveal">
             <a href="cakes.html" class="polaroid-link">
-              <div class="polaroid">
-                <div class="cake-photo photo-2" aria-label="Floral cake placeholder"></div>
-                <figcaption>🌸 Garden Bloom</figcaption>
+              <div class="polaroid" data-tilt>
+                <div class="cake-photo photo-2">
+                  <img src="images/macarons.png" alt="Hand-painted stack of pastel pink, mint and lemon macarons" loading="lazy" width="400" height="400" />
+                </div>
+                <figcaption>🌸 Pastel Macaron Trio</figcaption>
               </div>
             </a>
           </figure>
           <figure class="cake-card reveal">
             <a href="cakes.html" class="polaroid-link">
-              <div class="polaroid">
-                <div class="cake-photo photo-3" aria-label="Space cake placeholder"></div>
-                <figcaption>🚀 Cosmic Cutie</figcaption>
+              <div class="polaroid" data-tilt>
+                <div class="cake-photo photo-3">
+                  <img src="images/cupcake.png" alt="Hand-painted cupcake with mint and vanilla swirl frosting topped with a cherry" loading="lazy" width="400" height="400" />
+                </div>
+                <figcaption>🍒 Cherry Cloud Cupcake</figcaption>
               </div>
             </a>
           </figure>
@@ -137,6 +142,7 @@
 
     <!-- ===== How It Works (preview) ===== -->
     <section class="section how">
+      <img src="images/balloon-coral.png" alt="" class="section-balloon float-decor" data-speed="-0.08" aria-hidden="true" loading="lazy" />
       <div class="container">
         <h2 class="section-title reveal">How It Works</h2>
         <p class="section-sub reveal">Three sprinkle-filled steps to your dream cake. 🍰</p>
@@ -164,7 +170,8 @@
     </section>
 
     <!-- ===== CTA banner ===== -->
-    <section class="section">
+    <section class="section cta-section">
+      <img src="images/balloon-pink.png" alt="" class="cta-balloon float-decor" data-speed="-0.1" aria-hidden="true" loading="lazy" />
       <div class="container order-box reveal cta-banner">
         <h2 class="section-title">Ready to Dream Up a Cake?</h2>
         <p class="section-sub">Tell us what you're craving and we'll whisk it into reality.</p>

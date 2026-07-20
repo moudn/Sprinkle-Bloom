@@ -233,28 +233,157 @@ img, svg { display: block; max-width: 100%; }
 }
 .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-/* Animated SVG baker scene */
-.hero-image { display: flex; justify-content: center; }
-.baker-scene { width: min(420px, 100%); height: auto; }
-
-.blob {
-  fill: var(--pink-soft);
-  animation: pulse 6s ease-in-out infinite;
+/* Hero illustration: hand-painted cake floating over a morphing blob */
+.hero-image {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.cake { animation: floaty 5s ease-in-out infinite; transform-origin: center; }
-.baker { animation: floaty 5s ease-in-out infinite reverse; transform-origin: center; }
-.sprinkles .sp { animation: spin 4s linear infinite; transform-origin: center; }
-.sp2 { animation-delay: .5s; } .sp3 { animation-delay: 1s; }
-.sp4 { animation-delay: 1.5s; } .sp5 { animation-delay: 2s; }
-.piping { animation: pipe 1.6s ease-in-out infinite; transform-origin: 168px 138px; }
-.frost-dot { animation: drop 1.6s ease-in-out infinite; }
+.hero-blob {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: min(440px, 92%);
+  aspect-ratio: 1 / 1;
+  background: radial-gradient(circle at 35% 30%, #fff6f9 0%, var(--pink-soft) 55%, #ffe4ec 100%);
+  border-radius: 58% 42% 55% 45% / 50% 55% 45% 50%;
+  animation: blobMorph 12s ease-in-out infinite alternate;
+  z-index: 0;
+}
+.hero-cake {
+  position: relative;
+  z-index: 1;
+  width: min(400px, 82%);
+  height: auto;
+  filter: drop-shadow(0 24px 30px rgba(214, 116, 141, 0.28));
+  animation: floaty 6s ease-in-out infinite;
+}
+/* small companion desserts orbiting the hero cake */
+.hero-mini {
+  position: absolute;
+  z-index: 2;
+  width: clamp(70px, 9vw, 110px);
+  height: auto;
+  filter: drop-shadow(0 10px 14px rgba(214, 116, 141, 0.25));
+}
+.mini-macaron { top: 4%; left: 2%; animation: floaty 5s ease-in-out infinite reverse; }
+.mini-cupcake { bottom: 2%; right: 0; animation: floaty 7s ease-in-out .8s infinite; }
 
-@keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-@keyframes pulse  { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
-@keyframes spin   { to { transform: rotate(360deg); } }
+/* Decorative floating balloons (parallax handled in JS via data-depth/data-speed) */
+.float-decor { pointer-events: none; user-select: none; will-change: transform; }
+.hero-balloon {
+  position: absolute;
+  width: clamp(54px, 7vw, 96px);
+  height: auto;
+  z-index: 0;
+  opacity: .9;
+  filter: drop-shadow(0 12px 16px rgba(214, 116, 141, 0.18));
+}
+.balloon-1 { top: 12%;  left: 4%;  animation: sway 7s ease-in-out infinite; }
+.balloon-2 { top: 8%;   right: 6%; animation: sway 9s ease-in-out 1s infinite reverse; }
+.balloon-3 { bottom: 10%; left: 44%; width: clamp(44px, 5vw, 72px); animation: sway 8s ease-in-out .5s infinite; }
+
+/* balloons peeking into content sections */
+.section-balloon {
+  position: absolute;
+  top: 6%;
+  right: 3%;
+  width: clamp(50px, 6vw, 88px);
+  height: auto;
+  z-index: 0;
+  opacity: .8;
+  animation: sway 8s ease-in-out infinite;
+}
+.section-balloon-left { right: auto; left: 3%; top: 40%; animation-delay: 1.2s; }
+.cta-section { position: relative; }
+.cta-balloon {
+  position: absolute;
+  top: -8%;
+  right: 8%;
+  width: clamp(54px, 6vw, 90px);
+  z-index: 2;
+  animation: sway 7s ease-in-out infinite;
+}
+
+/* Scroll hint: a little bouncing pill at the bottom of the hero */
+.scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 1.6rem;
+  transform: translateX(-50%);
+  width: 28px; height: 46px;
+  border: 3px solid var(--pink);
+  border-radius: 999px;
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+  opacity: .7;
+  transition: opacity .25s;
+}
+.scroll-hint:hover { opacity: 1; }
+.scroll-hint-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--pink);
+  animation: scrollDot 1.8s ease-in-out infinite;
+}
+
+/* Hero title reveal: JS wraps words in .title-word spans */
+.title-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.6em) rotate(4deg);
+  animation: wordRise .7s cubic-bezier(.34,1.56,.64,1) forwards;
+}
+
+@keyframes wordRise {
+  to { opacity: 1; transform: translateY(0) rotate(0); }
+}
+/* --px / --py are parallax offsets driven by JS (mouse + scroll);
+   baking them into the keyframes lets both effects compose. */
+@keyframes floaty {
+  0%,100% { transform: translate(var(--px, 0px), var(--py, 0px)) rotate(-1deg); }
+  50%     { transform: translate(var(--px, 0px), calc(var(--py, 0px) - 14px)) rotate(1.5deg); }
+}
+@keyframes sway {
+  0%,100% { transform: translate(var(--px, 0px), var(--py, 0px)) rotate(-4deg); }
+  50%     { transform: translate(var(--px, 0px), calc(var(--py, 0px) - 18px)) rotate(5deg); }
+}
+@keyframes blobMorph {
+  0%   { border-radius: 58% 42% 55% 45% / 50% 55% 45% 50%; transform: scale(1) rotate(0); }
+  50%  { border-radius: 45% 55% 48% 52% / 55% 45% 55% 45%; transform: scale(1.05) rotate(3deg); }
+  100% { border-radius: 52% 48% 42% 58% / 45% 52% 48% 55%; transform: scale(.98) rotate(-3deg); }
+}
 @keyframes bob    { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-@keyframes pipe   { 0%,100% { transform: rotate(0); } 50% { transform: rotate(-8deg) translateY(2px); } }
-@keyframes drop   { 0% { opacity: 0; transform: translateY(-4px); } 50% { opacity: 1; } 100% { opacity: 0; transform: translateY(8px); } }
+@keyframes scrollDot {
+  0%   { transform: translateY(0); opacity: 1; }
+  70%  { transform: translateY(16px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 0; }
+}
+
+/* ---------- 5b. Marquee ribbon (patisserie-style flowing text) ---------- */
+.marquee {
+  overflow: hidden;
+  background: linear-gradient(90deg, var(--pink-soft), var(--mint-soft), var(--pink-soft));
+  padding-block: 0.9rem;
+  border-block: 2px dashed rgba(255, 182, 193, 0.5);
+  transform: rotate(-1deg) scale(1.02);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 26s linear infinite;
+}
+.marquee-track span {
+  font-family: var(--font-head);
+  font-size: 1.35rem;
+  color: var(--ink);
+  white-space: nowrap;
+  padding-right: 1rem;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
 
 /* ---------- 6. Generic sections ---------- */
 .section { padding-block: clamp(3.5rem, 8vw, 6rem); position: relative; }
@@ -276,7 +405,9 @@ img, svg { display: block; max-width: 100%; }
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
+  perspective: 1200px;       /* lets the JS 3D tilt read as depth */
 }
+.cake-grid-4 { grid-template-columns: repeat(4, 1fr); gap: 1.6rem; }
 .cake-card { display: flex; justify-content: center; }
 .polaroid {
   background: var(--white);
@@ -286,45 +417,44 @@ img, svg { display: block; max-width: 100%; }
   width: 100%;
   max-width: 320px;
   transition: transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .4s;
-  /* slight random tilt for charm */
+  /* slight random tilt for charm; JS 3D tilt takes over while hovering */
   transform: rotate(-2deg);
+  transform-style: preserve-3d;
 }
 .cake-card:nth-child(even) .polaroid { transform: rotate(2deg); }
 .polaroid:hover {
-  /* wobble + float on hover */
-  animation: wobble 0.6s ease;
   transform: translateY(-12px) rotate(0deg) scale(1.04);
   box-shadow: 0 22px 44px rgba(255, 182, 193, 0.5);
 }
-.cake-card:nth-child(even) .polaroid:hover { transform: translateY(-12px) rotate(0deg) scale(1.04); }
 
 .cake-photo {
   aspect-ratio: 1 / 1;
   border-radius: 16px;
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  padding: 8%;
 }
-/* Placeholder "photos": playful pastel gradients (replace with real images later) */
-.photo-1 { background: linear-gradient(135deg, var(--pink), var(--peach)); }
-.photo-2 { background: linear-gradient(135deg, var(--mint), #c8f7c8); }
-.photo-3 { background: linear-gradient(135deg, #c9b6ff, var(--pink)); }
-.photo-4 { background: linear-gradient(135deg, var(--gold), var(--peach)); }
-.photo-5 { background: linear-gradient(135deg, #ff9ec4, var(--pink)); }
-.photo-6 { background: linear-gradient(135deg, #a7e9ff, var(--mint)); }
+.cake-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 14px rgba(160, 90, 110, 0.22));
+  transition: transform .5s cubic-bezier(.34,1.56,.64,1);
+  transform: translateZ(30px);  /* pops toward the viewer during 3D tilt */
+}
+.polaroid:hover .cake-photo img { transform: translateZ(30px) scale(1.08) rotate(-2deg); }
+/* soft pastel backdrops behind the transparent illustrations */
+.photo-1 { background: radial-gradient(circle at 30% 25%, #fff8fa, var(--pink-soft) 70%); }
+.photo-2 { background: radial-gradient(circle at 30% 25%, #f6fff6, var(--mint-soft) 70%); }
+.photo-3 { background: radial-gradient(circle at 30% 25%, #fffdf4, #fdf3d8 70%); }
+.photo-4 { background: radial-gradient(circle at 30% 25%, #fff7f2, #ffe9d8 70%); }
 .polaroid figcaption {
   text-align: center;
   font-family: var(--font-head);
   font-size: 1.3rem;
   margin-top: .8rem;
   color: var(--ink);
-}
-
-@keyframes wobble {
-  0% { transform: rotate(0) translateY(-12px) scale(1.04); }
-  25% { transform: rotate(-3deg) translateY(-12px) scale(1.04); }
-  50% { transform: rotate(3deg) translateY(-12px) scale(1.04); }
-  75% { transform: rotate(-2deg) translateY(-12px) scale(1.04); }
-  100% { transform: rotate(0) translateY(-12px) scale(1.04); }
 }
 
 /* ---------- 8. How it works ---------- */
@@ -360,15 +490,22 @@ img, svg { display: block; max-width: 100%; }
 }
 .about-text p { margin-top: 1rem; color: var(--ink-soft); font-size: 1.05rem; }
 .blob-card {
-  background: linear-gradient(135deg, var(--mint), var(--pink));
-  border-radius: var(--radius-lg);
+  background: radial-gradient(circle at 32% 28%, #fff8fa 0%, var(--pink-soft) 55%, var(--mint-soft) 100%);
+  border-radius: 58% 42% 55% 45% / 50% 55% 45% 50%;
   aspect-ratio: 1 / 1;
   display: grid;
   place-items: center;
+  padding: 10%;
   box-shadow: var(--shadow);
+  animation: blobMorph 12s ease-in-out infinite alternate;
+}
+.blob-art {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 20px rgba(214, 116, 141, 0.28));
   animation: floaty 6s ease-in-out infinite;
 }
-.big-emoji { font-size: 6rem; }
 
 /* ---------- 10. Order / contact form ---------- */
 .order { }
@@ -458,6 +595,21 @@ img, svg { display: block; max-width: 100%; }
   animation: rise linear infinite;
   will-change: transform;
 }
+/* occasional watercolor balloon drifting up with the sprinkles */
+.particle-field .balloon-particle {
+  width: 44px;
+  height: auto;
+  bottom: -140px;
+  opacity: .6;
+  animation: balloonRise linear infinite;
+}
+@keyframes balloonRise {
+  0%   { transform: translateY(0) translateX(0) rotate(-3deg); opacity: 0; }
+  10%  { opacity: .6; }
+  50%  { transform: translateY(-60vh) translateX(24px) rotate(4deg); }
+  90%  { opacity: .6; }
+  100% { transform: translateY(-125vh) translateX(-12px) rotate(-4deg); opacity: 0; }
+}
 @keyframes rise {
   0%   { transform: translateY(0) rotate(0); opacity: 0; }
   12%  { opacity: .5; }
@@ -489,10 +641,14 @@ img, svg { display: block; max-width: 100%; }
   .hero-sub { margin-inline: auto; }
   .hero-cta { justify-content: center; }
   .hero-image { order: -1; }
-  .cake-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-balloon { opacity: .55; }
+  .balloon-3 { display: none; }
+  .scroll-hint { display: none; }
+  .cake-grid, .cake-grid-4 { grid-template-columns: repeat(2, 1fr); }
   .steps { grid-template-columns: 1fr; }
   .about-container { grid-template-columns: 1fr; }
   .about-art { order: -1; max-width: 280px; margin-inline: auto; }
+  .section-balloon { opacity: .45; }
 }
 
 @media (max-width: 620px) {
@@ -513,8 +669,9 @@ img, svg { display: block; max-width: 100%; }
   .nav-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
   .nav-toggle.open span:nth-child(2) { opacity: 0; }
   .nav-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-  .cake-grid { grid-template-columns: 1fr; }
+  .cake-grid, .cake-grid-4 { grid-template-columns: 1fr; }
   .hero-text h1 { font-size: 2.6rem; }
+  .marquee-track span { font-size: 1.1rem; }
 }
 
 /* ---------- 16. Reduced-motion accessibility ---------- */

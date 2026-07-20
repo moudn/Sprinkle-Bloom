@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'"
+  />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Our Cakes | Sprinkle &amp; Bloom 🧁</title>
   <meta name="description" content="Browse whimsical custom cakes baked by Sprinkle & Bloom." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,45 +41,43 @@
   <main>
     <!-- ===== Our Cakes Gallery ===== -->
     <section class="section cakes">
+      <img src="images/balloon-red.png"  alt="" class="section-balloon float-decor" data-speed="-0.08" aria-hidden="true" loading="lazy" />
+      <img src="images/balloon-pink.png" alt="" class="section-balloon section-balloon-left float-decor" data-speed="-0.12" aria-hidden="true" loading="lazy" />
       <div class="container">
         <h2 class="section-title reveal">Our Sweet Creations</h2>
         <p class="section-sub reveal">A peek at cakes we've baked with love. ✨</p>
 
-        <div class="cake-grid">
+        <div class="cake-grid cake-grid-4">
           <figure class="cake-card reveal">
-            <div class="polaroid">
-              <div class="cake-photo photo-1" aria-label="Unicorn cake placeholder"></div>
-              <figcaption>🌈 Unicorn Dream</figcaption>
+            <div class="polaroid" data-tilt>
+              <div class="cake-photo photo-1">
+                <img src="images/strawberry-cake.png" alt="Hand-painted layered strawberry cream cake with strawberries and cherries" loading="lazy" width="400" height="400" />
+              </div>
+              <figcaption>🍰 Strawberry Bloom</figcaption>
             </div>
           </figure>
           <figure class="cake-card reveal">
-            <div class="polaroid">
-              <div class="cake-photo photo-2" aria-label="Floral cake placeholder"></div>
-              <figcaption>🌸 Garden Bloom</figcaption>
+            <div class="polaroid" data-tilt>
+              <div class="cake-photo photo-2">
+                <img src="images/berry-tart.png" alt="Hand-painted berry tart piled with strawberries, cherries and blueberries" loading="lazy" width="400" height="400" />
+              </div>
+              <figcaption>🍓 Berry Patch Tart</figcaption>
             </div>
           </figure>
           <figure class="cake-card reveal">
-            <div class="polaroid">
-              <div class="cake-photo photo-3" aria-label="Space cake placeholder"></div>
-              <figcaption>🚀 Cosmic Cutie</figcaption>
+            <div class="polaroid" data-tilt>
+              <div class="cake-photo photo-3">
+                <img src="images/macarons.png" alt="Hand-painted stack of pastel pink, mint and lemon macarons" loading="lazy" width="400" height="400" />
+              </div>
+              <figcaption>🌸 Pastel Macaron Trio</figcaption>
             </div>
           </figure>
           <figure class="cake-card reveal">
-            <div class="polaroid">
-              <div class="cake-photo photo-4" aria-label="Macaron cake placeholder"></div>
-              <figcaption>🍬 Pastel Tower</figcaption>
-            </div>
-          </figure>
-          <figure class="cake-card reveal">
-            <div class="polaroid">
-              <div class="cake-photo photo-5" aria-label="Heart cake placeholder"></div>
-              <figcaption>💗 Sweetheart</figcaption>
-            </div>
-          </figure>
-          <figure class="cake-card reveal">
-            <div class="polaroid">
-              <div class="cake-photo photo-6" aria-label="Star cake placeholder"></div>
-              <figcaption>⭐ Starry Slice</figcaption>
+            <div class="polaroid" data-tilt>
+              <div class="cake-photo photo-4">
+                <img src="images/cupcake.png" alt="Hand-painted cupcake with mint and vanilla swirl frosting topped with a cherry" loading="lazy" width="400" height="400" />
+              </div>
+              <figcaption>🍒 Cherry Cloud Cupcake</figcaption>
             </div>
           </figure>
         </div>

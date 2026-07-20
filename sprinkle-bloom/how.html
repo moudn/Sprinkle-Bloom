@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'"
+  />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>How It Works | Sprinkle &amp; Bloom 🧁</title>
   <meta name="description" content="How Sprinkle & Bloom turns your cake dreams into delicious reality." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,6 +40,7 @@
 
   <main>
     <section class="section how">
+      <img src="images/balloon-pink.png" alt="" class="section-balloon float-decor" data-speed="-0.08" aria-hidden="true" loading="lazy" />
       <div class="container">
         <h2 class="section-title reveal">How It Works</h2>
         <p class="section-sub reveal">Three sprinkle-filled steps to your dream cake. 🍰</p>
@@ -72,7 +78,9 @@
           <p>🌱 <strong>Ingredients:</strong> Real butter, fresh fruit, and a generous handful of love.</p>
         </div>
         <div class="about-art reveal" aria-hidden="true">
-          <div class="blob-card"><span class="big-emoji">🎂</span></div>
+          <div class="blob-card">
+            <img src="images/berry-tart.png" alt="" class="blob-art" loading="lazy" width="400" height="400" />
+          </div>
         </div>
       </div>
     </section>

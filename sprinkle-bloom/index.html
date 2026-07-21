@@ -32,29 +32,34 @@
   </header>
 
   <main>
-    <!-- ===== Hero ===== -->
+    <!-- ===== Hero: central cake, wordmark overlaid, balloons circling ===== -->
     <section id="hero" class="hero">
-      <div class="hero-decor" aria-hidden="true">
-        <img src="images/strawberry-cake.png" alt="" class="hd-cake float-decor"    data-depth="16" data-speed="-0.05" />
-        <img src="images/berry-tart.png"      alt="" class="hd-tart float-decor"    data-depth="26" data-speed="-0.08" />
-        <img src="images/macarons.png"        alt="" class="hd-macaron float-decor" data-depth="30" data-speed="-0.07" />
-        <img src="images/cupcake.png"         alt="" class="hd-cupcake float-decor" data-depth="22" data-speed="-0.06" />
-        <img src="images/balloon-pink.png"    alt="" class="hd-balloon-1 float-decor" data-depth="40" data-speed="-0.1" />
-        <img src="images/balloon-coral.png"   alt="" class="hd-balloon-2 float-decor" data-depth="52" data-speed="-0.12" />
-        <img src="images/balloon-red.png"     alt="" class="hd-balloon-3 float-decor" data-depth="34" data-speed="-0.09" />
+      <div class="hero-stage">
+        <!-- balloons floating around the cake -->
+        <img src="images/balloon-pink.png"  alt="" class="hero-balloon hb-1 float-decor" data-depth="26" aria-hidden="true" />
+        <img src="images/balloon-red.png"   alt="" class="hero-balloon hb-2 float-decor" data-depth="34" aria-hidden="true" />
+        <img src="images/balloon-coral.png" alt="" class="hero-balloon hb-3 float-decor" data-depth="30" aria-hidden="true" />
+        <img src="images/balloon-red.png"   alt="" class="hero-balloon hb-4 float-decor" data-depth="30" aria-hidden="true" />
+        <img src="images/balloon-coral.png" alt="" class="hero-balloon hb-5 float-decor" data-depth="34" aria-hidden="true" />
+        <img src="images/balloon-pink.png"  alt="" class="hero-balloon hb-6 float-decor" data-depth="26" aria-hidden="true" />
+
+        <!-- the cake, centred -->
+        <img src="images/strawberry-cake.png"
+             alt="Layered strawberry cream cake topped with strawberries and cherries"
+             class="hero-cake float-decor" data-depth="10"
+             width="500" height="500" fetchpriority="high" />
+
+        <!-- wordmark sitting over the cake -->
+        <h1 class="hero-wordmark" data-split>Sprinkle<span class="amp">&amp;</span>Bloom</h1>
       </div>
 
-      <div class="hero-inner">
-        <span class="overline hero-eyebrow">Custom Cakes · Made with Love</span>
-        <h1 class="hero-wordmark" data-split>Sprinkle<span class="amp">&amp;</span>Bloom</h1>
-        <p class="hero-tagline">
-          Dream cakes, baked to life — whimsical bakes and bespoke celebration
-          cakes, handmade fresh every morning.
-        </p>
-        <div class="hero-cta">
-          <a href="contact.html" class="btn btn-primary">Order a Custom Cake</a>
-          <a href="cakes.html" class="btn btn-ghost">See Our Treats</a>
-        </div>
+      <p class="hero-tagline">
+        Dream cakes, baked to life — whimsical bakes and bespoke celebration
+        cakes, handmade fresh every morning.
+      </p>
+      <div class="hero-cta">
+        <a href="contact.html" class="btn btn-primary">Order a Custom Cake</a>
+        <a href="cakes.html" class="btn btn-ghost">See Our Treats</a>
       </div>
 
       <a href="#treats" class="scroll-hint" aria-label="Scroll down">

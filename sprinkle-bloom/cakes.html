@@ -5,14 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta
     http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'"
+    content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'"
   />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <title>Our Cakes | Sprinkle &amp; Bloom</title>
-  <meta name="description" content="Browse whimsical custom cakes baked by Sprinkle & Bloom." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <title>Our Treats | Sprinkle &amp; Bloom</title>
+  <meta name="description" content="Browse the treats and signature cakes baked by Sprinkle & Bloom." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -20,83 +17,74 @@
 
   <header class="header" id="header">
     <nav class="nav container">
-      <a href="index.html" class="logo">
-        <span class="logo-text">Sprinkle &amp; Bloom</span>
-        <span class="logo-tag">Custom Cake Atelier</span>
-      </a>
+      <a href="index.html" class="logo"><span class="logo-text">Sprinkle&nbsp;Bloom</span></a>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-links" id="navLinks">
-        <li><a href="cakes.html" class="active">Our Cakes</a></li>
-        <li><a href="how.html">How It Works</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="contact.html" class="btn btn-primary btn-small">Order Now</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cakes.html" class="active">Our Treats</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html" class="btn btn-primary btn-small">Order</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <!-- ===== Our Cakes Gallery ===== -->
-    <section class="section cakes">
-      <img src="images/balloon-red.png"  alt="" class="section-balloon float-decor" data-speed="-0.06" aria-hidden="true" loading="lazy" />
-      <img src="images/balloon-pink.png" alt="" class="section-balloon section-balloon-left float-decor" data-speed="-0.09" aria-hidden="true" loading="lazy" />
+    <!-- ===== Specials trio ===== -->
+    <section class="section">
       <div class="container">
         <div class="section-head">
-          <span class="overline reveal">The Collection</span>
-          <h2 class="section-title reveal">Our Sweet Creations</h2>
-          <p class="section-sub reveal">A peek at cakes we've baked with love.</p>
-          <div class="title-rule reveal" aria-hidden="true"></div>
+          <span class="overline reveal">Sprinkle Bloom Specials</span>
+          <h2 class="section-title reveal">Our Treats</h2>
+          <p class="section-sub reveal">Freshly baked favourites, made with love every morning.</p>
         </div>
-
-        <div class="cake-grid cake-grid-4">
-          <figure class="cake-card reveal">
-            <div class="polaroid" data-tilt>
-              <div class="cake-photo photo-1">
-                <img src="images/strawberry-cake.png" alt="Hand-painted layered strawberry cream cake with strawberries and cherries" loading="lazy" width="400" height="400" />
-              </div>
-              <figcaption>
-                <span class="cake-name">Strawberry Bloom</span>
-                <span class="cake-note">Layer Cake</span>
-              </figcaption>
-            </div>
-          </figure>
-          <figure class="cake-card reveal">
-            <div class="polaroid" data-tilt>
-              <div class="cake-photo photo-2">
-                <img src="images/berry-tart.png" alt="Hand-painted berry tart piled with strawberries, cherries and blueberries" loading="lazy" width="400" height="400" />
-              </div>
-              <figcaption>
-                <span class="cake-name">Berry Patch Tart</span>
-                <span class="cake-note">Summer Fruits</span>
-              </figcaption>
-            </div>
-          </figure>
-          <figure class="cake-card reveal">
-            <div class="polaroid" data-tilt>
-              <div class="cake-photo photo-3">
-                <img src="images/macarons.png" alt="Hand-painted stack of pastel pink, mint and lemon macarons" loading="lazy" width="400" height="400" />
-              </div>
-              <figcaption>
-                <span class="cake-name">Pastel Macaron Trio</span>
-                <span class="cake-note">Petits Fours</span>
-              </figcaption>
-            </div>
-          </figure>
-          <figure class="cake-card reveal">
-            <div class="polaroid" data-tilt>
-              <div class="cake-photo photo-4">
-                <img src="images/cupcake.png" alt="Hand-painted cupcake with mint and vanilla swirl frosting topped with a cherry" loading="lazy" width="400" height="400" />
-              </div>
-              <figcaption>
-                <span class="cake-name">Cherry Cloud Cupcake</span>
-                <span class="cake-note">Signature Bake</span>
-              </figcaption>
-            </div>
-          </figure>
+        <div class="treats-grid">
+          <article class="treat-card reveal">
+            <div class="treat-disc"><img src="images/berry-tart.png" alt="Mixed berry tart with strawberries, cherries and blueberries" loading="lazy" width="400" height="400" /></div>
+            <h3 class="treat-name">Mixed Berry Tart</h3>
+            <p class="treat-note">Summer Fruits</p>
+          </article>
+          <article class="treat-card reveal">
+            <div class="treat-disc"><img src="images/macarons.png" alt="Stack of pastel pink, mint and lemon macarons" loading="lazy" width="400" height="400" /></div>
+            <h3 class="treat-name">Macarons</h3>
+            <p class="treat-note">Petits Fours</p>
+          </article>
+          <article class="treat-card reveal">
+            <div class="treat-disc"><img src="images/cupcake.png" alt="Cupcake with mint and vanilla swirl frosting topped with a cherry" loading="lazy" width="400" height="400" /></div>
+            <h3 class="treat-name">Customised Cupcakes</h3>
+            <p class="treat-note">Made Your Way</p>
+          </article>
         </div>
+      </div>
+    </section>
 
+    <!-- ===== Signature cakes ===== -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="overline reveal">Signature Flavours</span>
+          <h2 class="section-title reveal">Cakes, cakes and Cakes!</h2>
+          <p class="section-sub reveal">Four distinctive flavours from all over the world.</p>
+        </div>
+        <div class="cakes-2x2" style="grid-template-columns:repeat(4,1fr);max-width:none;">
+          <article class="slice-card reveal">
+            <div class="slice-photo"><img src="images/tres-leches.png" alt="Slice of tres leches cake topped with cream, strawberry and cherry" loading="lazy" width="300" height="300" /></div>
+            <h3 class="slice-name">Tres Leches</h3>
+          </article>
+          <article class="slice-card reveal">
+            <div class="slice-photo"><img src="images/ube-cream.png" alt="Slice of purple ube cream cake" loading="lazy" width="300" height="300" /></div>
+            <h3 class="slice-name">Ube Cream</h3>
+          </article>
+          <article class="slice-card reveal">
+            <div class="slice-photo"><img src="images/tiramisu.png" alt="Slice of cocoa-dusted tiramisu" loading="lazy" width="300" height="300" /></div>
+            <h3 class="slice-name">Tiramisu</h3>
+          </article>
+          <article class="slice-card reveal">
+            <div class="slice-photo"><img src="images/red-velvet.png" alt="Slice of red velvet cake with cream cheese frosting" loading="lazy" width="300" height="300" /></div>
+            <h3 class="slice-name">Red Velvet</h3>
+          </article>
+        </div>
         <div class="center-btn reveal">
           <a href="contact.html" class="btn btn-primary">Order a Cake Like These</a>
         </div>
@@ -105,15 +93,24 @@
   </main>
 
   <footer class="footer">
-    <div class="container footer-inner">
-      <div class="footer-social">
-        <a href="#" aria-label="Instagram">Instagram</a>
-        <a href="#" aria-label="Pinterest">Pinterest</a>
-        <a href="#" aria-label="Facebook">Facebook</a>
-        <a href="#" aria-label="TikTok">TikTok</a>
+    <div class="container">
+      <div class="footer-treats" aria-hidden="true">
+        <img src="images/macarons.png" alt="" loading="lazy" />
+        <img src="images/balloon-pink.png" alt="" loading="lazy" />
+        <img src="images/cupcake.png" alt="" loading="lazy" />
+        <img src="images/balloon-red.png" alt="" loading="lazy" />
+        <img src="images/berry-tart.png" alt="" loading="lazy" />
       </div>
-      <p class="footer-love">Baked with love at Sprinkle &amp; Bloom</p>
-      <p class="footer-copy">© <span id="year"></span> Sprinkle &amp; Bloom Bakery. All rights reserved.</p>
+      <div class="footer-inner">
+        <p class="footer-word">Sprinkle &amp; Bloom</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="Pinterest">Pinterest</a>
+          <a href="#" aria-label="Facebook">Facebook</a>
+          <a href="#" aria-label="TikTok">TikTok</a>
+        </div>
+        <p class="footer-copy">© <span id="year"></span> Sprinkle &amp; Bloom Bakery. Baked with love.</p>
+      </div>
     </div>
   </footer>
 

@@ -201,7 +201,7 @@
          cursor like a card being picked up (mouse-only).
      --------------------------------------------------------------- */
   if (finePointer && !reducedMotion) {
-    $$("[data-tilt]").forEach((card) => {
+    $$(".treat-card, .slice-card").forEach((card) => {
       card.addEventListener("mousemove", (e) => {
         const r = card.getBoundingClientRect();
         const rx = ((e.clientY - r.top) / r.height - 0.5) * -7; // deg
